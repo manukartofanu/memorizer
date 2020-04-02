@@ -1,0 +1,45 @@
+﻿<Window x:Class="Manurizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Manurizer"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Manurizer" Height="400" Width="400" Closing="Window_Closing">
+	<Window.DataContext>
+		<local:ViewModel/>
+	</Window.DataContext>
+	<Grid Margin="8">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="100"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20"/>
+			<RowDefinition Height="20"/>
+			<RowDefinition Height="100"/>
+			<RowDefinition Height="30"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<TextBlock Text="Word" HorizontalAlignment="Left"/>
+		<TextBlock Grid.Row="1" Text="Class"/>
+		<TextBlock Grid.Row="2" Text="Definition"/>
+		<TextBox Grid.Column="1" Text="{Binding Path=Word.Text}"/>
+		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Word.Class}"/>
+		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Word.Definition}"/>
+		<Button Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding Path=AddCommand}">Add</Button>
+		<ListBox Grid.ColumnSpan="2" Grid.Row="4" ItemsSource="{Binding Path=Words}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Text}">
+						<Run Text="{Binding Path=Text}"/>
+						<Run> (</Run>
+						<Run Text="{Binding Path=Class}" FontStyle="Italic"/>
+						<Run>) </Run>
+						<Run Text="{Binding Path=Definition}"/>
+					</TextBlock>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+</Window>
