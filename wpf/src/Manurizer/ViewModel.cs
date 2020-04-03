@@ -15,8 +15,16 @@ namespace Manurizer
 
 		public ViewModel()
 		{
-			Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText(@"save.txt")));
+			InitializeWords();
 			AddCommand = new DelegateCommand(AddWord, (t) => true);
+		}
+
+		public void InitializeWords()
+		{
+			if (File.Exists("save.txt"))
+			{
+				Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText("save.txt")));
+			}
 		}
 
 		public void AddWord(object param)
