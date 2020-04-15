@@ -1,16 +1,23 @@
 ﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Manurizer.Models
 {
 	public class Word
 	{
-		[JsonProperty(PropertyName = "text")]
-		public string Text { get; set; }
+		[JsonProperty(PropertyName = "n")]
+		public string Name { get; set; }
 
-		[JsonProperty(PropertyName = "def")]
-		public string Definition { get; set; }
+		[JsonProperty(PropertyName = "t")]
+		public string Transcription { get; set; }
 
-		[JsonProperty(PropertyName = "class")]
-		public string Class { get; set; }
+		[JsonProperty(PropertyName = "c")]
+		public string Category { get; set; }
+
+		[JsonProperty(PropertyName = "m")]
+		public string Meaning { get; set; }
+
+		[JsonProperty(PropertyName = "d")]
+		public List<Definition> Definitions { get; set; }
 	}
 }

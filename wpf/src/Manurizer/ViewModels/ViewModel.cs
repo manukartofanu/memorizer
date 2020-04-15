@@ -10,8 +10,8 @@ namespace Manurizer.ViewModels
 {
 	public class ViewModel : INotifyPropertyChanged
 	{
-		private Word _word = new Word();
-		private ObservableCollection<Word> _words = new ObservableCollection<Word>();
+		private WordOld _word = new WordOld();
+		private ObservableCollection<WordOld> _words = new ObservableCollection<WordOld>();
 
 		public DelegateCommand AddCommand { get; set; }
 
@@ -25,17 +25,17 @@ namespace Manurizer.ViewModels
 		{
 			if (File.Exists("save.txt"))
 			{
-				Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText("save.txt")));
+				Words = new ObservableCollection<WordOld>(JsonConvert.DeserializeObject<WordOld[]>(File.ReadAllText("save.txt")));
 			}
 		}
 
 		public void AddWord(object param)
 		{
 			Words.Add(Word);
-			Word = new Word();
+			Word = new WordOld();
 		}
 
-		public Word Word
+		public WordOld Word
 		{
 			get { return _word; }
 			set
@@ -45,7 +45,7 @@ namespace Manurizer.ViewModels
 			}
 		}
 
-		public ObservableCollection<Word> Words
+		public ObservableCollection<WordOld> Words
 		{
 			get { return _words; }
 			set

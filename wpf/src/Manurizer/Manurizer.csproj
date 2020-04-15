@@ -58,6 +58,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Models\Definition.cs" />
+    <Compile Include="Models\WordOld.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Models\Word.cs" />
     <Page Include="Views\MainWindow.xaml">
