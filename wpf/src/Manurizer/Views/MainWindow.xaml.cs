@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Manurizer.ViewModels;
+using Newtonsoft.Json;
 using System.IO;
 using System.Windows;
 
-namespace Manurizer
+namespace Manurizer.Views
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

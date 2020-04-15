@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Manurizer.Commands;
+using Manurizer.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 
-namespace Manurizer
+namespace Manurizer.ViewModels
 {
 	public class ViewModel : INotifyPropertyChanged
 	{

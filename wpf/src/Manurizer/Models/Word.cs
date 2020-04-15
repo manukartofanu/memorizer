@@ -1,7 +1,6 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Manurizer
+namespace Manurizer.Models
 {
 	public class Word
 	{
