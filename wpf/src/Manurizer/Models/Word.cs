@@ -5,6 +5,17 @@ namespace Manurizer.Models
 {
 	public class Word
 	{
+		public Word()
+		{
+		}
+
+		public Word(WordOld old)
+		{
+			Name = old.Text;
+			Category = old.Class;
+			Definitions = new List<Definition> { new Definition { Text = old.Definition } };
+		}
+
 		[JsonProperty(PropertyName = "n")]
 		public string Name { get; set; }
 

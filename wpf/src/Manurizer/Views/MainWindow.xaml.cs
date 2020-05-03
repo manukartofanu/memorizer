@@ -1,5 +1,7 @@
-﻿using Manurizer.ViewModels;
+﻿using Manurizer.Models;
+using Manurizer.ViewModels;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
@@ -18,7 +20,12 @@ namespace Manurizer.Views
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			var viewModel = (ViewModel)DataContext;
-			File.WriteAllText("save.txt", JsonConvert.SerializeObject(viewModel.Words));
+			var words = new List<Word>();
+			foreach (var item in viewModel.Words)
+			{
+				words.Add(new Word(item));
+			}
+			File.WriteAllText("save.txt", JsonConvert.SerializeObject(words));
 		}
 	}
 }
