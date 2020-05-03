@@ -28,7 +28,7 @@
 							<TextBlock Margin="0 4 0 0">Text</TextBlock>
 							<TextBox Height="48" Text="{Binding Path=Text}"/>
 							<TextBlock Margin="0 4 0 0">Examples</TextBlock>
-							<TextBox Height="64" Text="{Binding Path=Examples}"/>
+							<TextBox Height="64" Text="{Binding Path=Examples}" TextWrapping="Wrap" AcceptsReturn="True"/>
 							<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
 						</StackPanel>
 					</DataTemplate>
