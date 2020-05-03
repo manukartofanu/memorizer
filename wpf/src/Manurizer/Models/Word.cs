@@ -18,6 +18,6 @@ namespace Manurizer.Models
 		public string Meaning { get; set; }
 
 		[JsonProperty(PropertyName = "d")]
-		public ObservableCollection<Definition> Definitions { get; set; }
+		public ObservableCollection<Definition> Definitions { get; set; } = new ObservableCollection<Definition>();
 	}
 }
