@@ -14,11 +14,13 @@ namespace Manurizer.ViewModels
 		private Word _selectedWord;
 		public ICommand WordAddCommand { get; private set; }
 		public ICommand WordViewCommand { get; private set; }
+		public ICommand WordDeleteCommand { get; private set; }
 
 		public MainViewModel()
 		{
 			WordAddCommand = new DelegateCommand((t) => { AddWord(t); }, (t) => { return true; });
 			WordViewCommand = new DelegateCommand((t) => { EditWord(t); }, (t) => { return true; });
+			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(); }, (t) => { return true; });
 		}
 
 		private void AddWord(object window)
@@ -34,6 +36,14 @@ namespace Manurizer.ViewModels
 			{
 				var viewModel = new WordViewModel { Word = SelectedWord };
 				new WordWindow(window, viewModel).ShowDialog();
+			}
+		}
+
+		private void DeleteWord()
+		{
+			if (SelectedWord != null)
+			{
+				Words.Remove(SelectedWord);
 			}
 		}
 

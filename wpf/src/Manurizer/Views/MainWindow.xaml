@@ -26,5 +26,6 @@
 		</ListBox>
 		<Button Margin="0 4 0 0" Command="{Binding Path=WordAddCommand}" CommandParameter="{Binding ElementName=window}">Add Word</Button>
 		<Button Margin="0 4 0 0" Command="{Binding Path=WordViewCommand}" CommandParameter="{Binding ElementName=window}">View Word</Button>
+		<Button Margin="0 32 0 0" Command="{Binding Path=WordDeleteCommand}">Delete Word</Button>
 	</StackPanel>
 </Window>
