@@ -3,6 +3,7 @@ using Manurizer.ViewModels;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace Manurizer.Views
@@ -29,7 +30,7 @@ namespace Manurizer.Views
 			var viewModel = (MainViewModel)DataContext;
 			if (File.Exists(filename))
 			{
-				viewModel.Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText(filename)));
+				viewModel.Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText(filename)).OrderBy(t => t.Category).OrderBy(t => t.Meaning).OrderBy(t => t.Name));
 			}
 		}
 	}
