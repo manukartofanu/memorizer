@@ -6,41 +6,25 @@
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Manurizer" Height="400" Width="400" Closing="Window_Closing">
+        Title="Manurizer" SizeToContent="WidthAndHeight" Closing="Window_Closing" Loaded="Window_Loaded" Name="window">
 	<Window.DataContext>
-		<viewModels:ViewModel/>
+		<viewModels:MainViewModel/>
 	</Window.DataContext>
-	<Grid Margin="8">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="100"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="20"/>
-			<RowDefinition Height="20"/>
-			<RowDefinition Height="100"/>
-			<RowDefinition Height="30"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<TextBlock Text="Word" HorizontalAlignment="Left"/>
-		<TextBlock Grid.Row="1" Text="Class"/>
-		<TextBlock Grid.Row="2" Text="Definition"/>
-		<TextBox Grid.Column="1" Text="{Binding Path=Word.Text}"/>
-		<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Word.Class}"/>
-		<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Word.Definition}"/>
-		<Button Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding Path=AddCommand}">Add</Button>
-		<ListBox Grid.ColumnSpan="2" Grid.Row="4" ItemsSource="{Binding Path=Words}">
+	<StackPanel Width="512" Margin="8">
+		<ListBox Height="512" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<TextBlock>
-						<Run Text="{Binding Path=Text}"/>
+						<Run Text="{Binding Path=Name}"/>
 						<Run> (</Run>
-						<Run Text="{Binding Path=Class}" FontStyle="Italic"/>
+						<Run Text="{Binding Path=Category}" FontStyle="Italic"/>
 						<Run>) </Run>
-						<Run Text="{Binding Path=Definition}"/>
+						<Run Text="{Binding Path=Meaning}"/>
 					</TextBlock>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
-	</Grid>
+		<Button Margin="0 4 0 0" Command="{Binding Path=WordAddCommand}" CommandParameter="{Binding ElementName=window}">Add Word</Button>
+		<Button Margin="0 4 0 0" Command="{Binding Path=WordViewCommand}" CommandParameter="{Binding ElementName=window}">View Word</Button>
+	</StackPanel>
 </Window>

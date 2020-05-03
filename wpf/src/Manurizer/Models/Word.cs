@@ -1,21 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Manurizer.Models
 {
 	public class Word
 	{
-		public Word()
-		{
-		}
-
-		public Word(WordOld old)
-		{
-			Name = old.Text;
-			Category = old.Class;
-			Definitions = new List<Definition> { new Definition { Text = old.Definition } };
-		}
-
 		[JsonProperty(PropertyName = "n")]
 		public string Name { get; set; }
 
@@ -29,6 +18,6 @@ namespace Manurizer.Models
 		public string Meaning { get; set; }
 
 		[JsonProperty(PropertyName = "d")]
-		public List<Definition> Definitions { get; set; }
+		public ObservableCollection<Definition> Definitions { get; set; }
 	}
 }

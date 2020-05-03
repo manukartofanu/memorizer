@@ -1,0 +1,40 @@
+﻿<Window x:Class="Manurizer.Views.WordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Manurizer.Views"
+		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
+        mc:Ignorable="d"
+        Title="WordWindow" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+	<Window.DataContext>
+		<viewModels:WordViewModel/>
+	</Window.DataContext>
+	<StackPanel Width="384" Margin="8">
+		<TextBlock>Word</TextBlock>
+		<TextBox Text="{Binding Path=Word.Name}"/>
+		<TextBlock Margin="0 4 0 0">Transcription</TextBlock>
+		<TextBox Text="{Binding Path=Word.Transcription}"/>
+		<TextBlock Margin="0 4 0 0">Category</TextBlock>
+		<TextBox Text="{Binding Path=Word.Category}"/>
+		<TextBlock Margin="0 4 0 0">Meaning</TextBlock>
+		<TextBox Text="{Binding Path=Word.Meaning}"/>
+		<TextBlock Margin="0 4 0 0">Definition</TextBlock>
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="256">
+			<ItemsControl Margin="4" ItemsSource="{Binding Path=Word.Definitions}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Margin="4">
+							<TextBlock Margin="0 4 0 0">Text</TextBlock>
+							<TextBox Height="48" Text="{Binding Path=Text}"/>
+							<TextBlock Margin="0 4 0 0">Examples</TextBlock>
+							<TextBox Height="64" Text="{Binding Path=Examples}"/>
+							<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+		<Button Margin="0 4 0 0" Command="{Binding Path=DefinitionAddCommand}">Add Definition</Button>
+	</StackPanel>
+</Window>
