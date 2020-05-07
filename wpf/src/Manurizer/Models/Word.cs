@@ -19,5 +19,21 @@ namespace Manurizer.Models
 
 		[JsonProperty(PropertyName = "d")]
 		public ObservableCollection<Definition> Definitions { get; set; } = new ObservableCollection<Definition>();
+
+		public Word()
+		{
+		}
+
+		public Word(Word word)
+		{
+			Name = word.Name;
+			Transcription = word.Transcription;
+			Category = word.Category;
+			Meaning = word.Meaning;
+			foreach (var item in word.Definitions)
+			{
+				Definitions.Add(new Definition { Text = item.Text, Examples = item.Examples });
+			}
+		}
 	}
 }
