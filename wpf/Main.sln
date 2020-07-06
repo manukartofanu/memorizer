@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C09E740C-ECB5-4616-8123-B39C657FF56D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3EFC177A-B222-4137-8FCE-29C582D27FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manurizer", "src\Manurizer\Manurizer.csproj", "{FFDB94A5-0313-47BF-8007-B96062F89D89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manurizer", "src\Manurizer\Manurizer.csproj", "{FFDB94A5-0313-47BF-8007-B96062F89D89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
