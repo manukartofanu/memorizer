@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Manurizer</id>
+    <version>0.0.0</version>
+    <authors>manukartofanu</authors>
+    <owners>manukartofanu</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Manurizer</description>
+    <copyright>Copyright 2020</copyright>
+	<dependencies>
+      <group targetFramework=".NETFramework4.5" />
+    </dependencies>
+  </metadata>
+</package>
