@@ -16,10 +16,6 @@ set /p VersionNumber= < version.info
 del version.info
 echo Release Version: %VersionNumber%
 
-rem Create Release Packed (Final) Folder
-if exist %RELEASE_PACKED_FOLDER% rmdir /q /s %RELEASE_PACKED_FOLDER%
-mkdir %RELEASE_PACKED_FOLDER%
-
 rem Create Release Squirrel Files (Temp) Folder
 if exist %RELEASE_SQUIRREL_FOLDER% rmdir /q /s %RELEASE_SQUIRREL_FOLDER%
 mkdir %RELEASE_SQUIRREL_FOLDER%
