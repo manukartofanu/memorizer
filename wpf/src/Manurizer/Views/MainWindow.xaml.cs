@@ -36,11 +36,14 @@ namespace Manurizer.Views
 			}
 			Task.Run(async () =>
 			{
-				using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/manukartofanu/memorizer"))
-				{
-					await mgr.Result.UpdateApp();
-				}
+				var mgr = GetUpdateManager();
+				await mgr.UpdateApp();
 			});
+		}
+
+		private static UpdateManager GetUpdateManager()
+		{
+			return UpdateManager.GitHubUpdateManager("https://github.com/manukartofanu/memorizer").Result;
 		}
 	}
 }
