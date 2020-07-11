@@ -1,9 +1,11 @@
 ﻿using Manurizer.Models;
 using Manurizer.ViewModels;
 using Newtonsoft.Json;
+using Squirrel;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Manurizer.Views
@@ -32,6 +34,13 @@ namespace Manurizer.Views
 			{
 				viewModel.Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText(filename)).OrderBy(t => t.Category).OrderBy(t => t.Meaning).OrderBy(t => t.Name));
 			}
+			Task.Run(async () =>
+			{
+				using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/manukartofanu/memorizer"))
+				{
+					await mgr.Result.UpdateApp();
+				}
+			});
 		}
 	}
 }
