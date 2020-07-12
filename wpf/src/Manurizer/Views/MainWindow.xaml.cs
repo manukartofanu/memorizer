@@ -2,11 +2,14 @@
 using Manurizer.ViewModels;
 using Newtonsoft.Json;
 using Squirrel;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+#if (!DEBUG)
+using System.Threading.Tasks;
+#endif
 
 namespace Manurizer.Views
 {
@@ -23,22 +26,29 @@ namespace Manurizer.Views
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			var viewModel = (MainViewModel)DataContext;
-			File.WriteAllText("save.txt", JsonConvert.SerializeObject(viewModel.Words));
+			var saveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Manurizer");
+			if (!Directory.Exists(saveDirectory))
+			{
+				Directory.CreateDirectory(saveDirectory);
+			}
+			File.WriteAllText(Path.Combine(saveDirectory, "save.txt"), JsonConvert.SerializeObject(viewModel.Words));
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			string filename = "save.txt";
+			string filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "save.txt");
 			var viewModel = (MainViewModel)DataContext;
 			if (File.Exists(filename))
 			{
 				viewModel.Words = new ObservableCollection<Word>(JsonConvert.DeserializeObject<Word[]>(File.ReadAllText(filename)).OrderBy(t => t.Category).OrderBy(t => t.Meaning).OrderBy(t => t.Name));
 			}
+#if (!DEBUG)
 			Task.Run(async () =>
 			{
 				var mgr = GetUpdateManager();
 				await mgr.UpdateApp();
 			});
+#endif
 		}
 
 		private static UpdateManager GetUpdateManager()
