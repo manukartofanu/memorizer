@@ -36,7 +36,7 @@ namespace Manurizer.Views
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			string filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "save.txt");
+			string filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Manurizer", "save.txt");
 			var viewModel = (MainViewModel)DataContext;
 			if (File.Exists(filename))
 			{
