@@ -45,8 +45,10 @@ namespace Manurizer.Views
 #if (!DEBUG)
 			Task.Run(async () =>
 			{
-				var mgr = GetUpdateManager();
-				await mgr.UpdateApp();
+				using (var mgr = GetUpdateManager())
+				{
+					await mgr.UpdateApp();
+				}
 			});
 #endif
 		}
