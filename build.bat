@@ -4,7 +4,6 @@ set DEVENV_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\C
 set BAT_PATH=%~dp0
 set SOLUTION_PATH=%~dp0\wpf
 set RELEASE_BUILD_FOLDER=%~dp0\Release
-set RELEASE_PACKED_FOLDER=%~dp0\..\memorizer-releases.git
 set RELEASE_SQUIRREL_FOLDER=Manurizer-%VersionNumber%-squirrel
 
 rem Build Project
@@ -41,7 +40,6 @@ rem Create Squirrel Exe
 wpf\packages\squirrel.windows.1.9.1\tools\Squirrel.exe --releasify %RELEASE_SQUIRREL_FOLDER%\Manurizer.%VersionNumber%.nupkg --setupIcon wpf\src\Manurizer\icon.ico
 del Releases\Manurizer.exe
 rename Releases\Setup.exe Manurizer.exe
-xcopy /y Releases\*.* %RELEASE_PACKED_FOLDER%
 
 rem Remove Temp Files and Folder
 rmdir /q /s %RELEASE_BUILD_FOLDER%
