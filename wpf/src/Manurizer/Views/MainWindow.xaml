@@ -11,6 +11,7 @@
 		<viewModels:MainViewModel/>
 	</Window.DataContext>
 	<StackPanel Width="512" Margin="8">
+		<Button Margin="0 0 0 16" Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}">Train</Button>
 		<ListBox Height="512" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>

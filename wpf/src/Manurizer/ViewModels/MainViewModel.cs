@@ -4,6 +4,7 @@ using Manurizer.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Manurizer.ViewModels
@@ -16,6 +17,7 @@ namespace Manurizer.ViewModels
 		public ICommand WordViewCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
 		public ICommand WordDeleteCommand { get; private set; }
+		public ICommand TrainCommand { get; private set; }
 
 		public MainViewModel()
 		{
@@ -23,6 +25,7 @@ namespace Manurizer.ViewModels
 			WordViewCommand = new DelegateCommand((t) => { EditWord(t); }, (t) => { return true; });
 			WordCopyCommand = new DelegateCommand((t) => { CopyWord(); }, (t) => { return true; });
 			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(); }, (t) => { return true; });
+			TrainCommand = new DelegateCommand((t) => { Train(t); }, (t) => { return true; });
 		}
 
 		private void AddWord(object window)
@@ -55,6 +58,12 @@ namespace Manurizer.ViewModels
 			{
 				Words.Remove(SelectedWord);
 			}
+		}
+
+		private void Train(object window)
+		{
+			var viewModel = new TrainViewModel { Words = Words };
+			new TrainWindow(window, viewModel).ShowDialog();
 		}
 
 		public ObservableCollection<Word> Words

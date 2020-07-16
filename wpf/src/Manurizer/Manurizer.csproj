@@ -95,9 +95,13 @@
     <Compile Include="Models\Definition.cs" />
     <Compile Include="Models\Word.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\TrainViewModel.cs" />
     <Compile Include="ViewModels\WordViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrainWindow.xaml.cs">
+      <DependentUpon>TrainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WordWindow.xaml.cs">
       <DependentUpon>WordWindow.xaml</DependentUpon>
@@ -110,6 +114,10 @@
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TrainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WordWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
