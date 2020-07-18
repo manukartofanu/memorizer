@@ -35,7 +35,7 @@ namespace Manurizer.ViewModels
 			Words.Add(viewModel.Word);
 		}
 
-		private void EditWord(object window)
+		internal void EditWord(object window)
 		{
 			if (SelectedWord != null)
 			{

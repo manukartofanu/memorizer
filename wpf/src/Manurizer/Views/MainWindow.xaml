@@ -24,6 +24,11 @@
 					</TextBlock>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
+			<ListBox.ItemContainerStyle>
+				<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+					<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
+				</Style>
+			</ListBox.ItemContainerStyle>
 		</ListBox>
 		<Button Margin="0 4 0 0" Command="{Binding Path=WordAddCommand}" CommandParameter="{Binding ElementName=window}">Add Word</Button>
 		<Button Margin="0 4 0 0" Command="{Binding Path=WordViewCommand}" CommandParameter="{Binding ElementName=window}">View Word</Button>

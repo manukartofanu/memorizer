@@ -57,5 +57,11 @@ namespace Manurizer.Views
 		{
 			return UpdateManager.GitHubUpdateManager("https://github.com/manukartofanu/memorizer").Result;
 		}
+
+		private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			var viewModel = (MainViewModel)DataContext;
+			viewModel.EditWord(this);
+		}
 	}
 }
