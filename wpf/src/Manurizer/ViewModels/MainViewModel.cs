@@ -13,6 +13,7 @@ namespace Manurizer.ViewModels
 	{
 		private ObservableCollection<Word> _words = new ObservableCollection<Word>();
 		private Word _selectedWord;
+		private bool _isIra;
 		public ICommand WordAddCommand { get; private set; }
 		public ICommand WordViewCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
@@ -83,6 +84,16 @@ namespace Manurizer.ViewModels
 			{
 				_selectedWord = value;
 				RaisePropertyChanged(nameof(SelectedWord));
+			}
+		}
+
+		public bool IsIra
+		{
+			get { return _isIra; }
+			set
+			{
+				_isIra = value;
+				RaisePropertyChanged(nameof(IsIra));
 			}
 		}
 

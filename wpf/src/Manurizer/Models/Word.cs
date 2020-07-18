@@ -24,6 +24,8 @@ namespace Manurizer.Models
 		[JsonProperty(PropertyName = "d")]
 		public ObservableCollection<Definition> Definitions { get; set; } = new ObservableCollection<Definition>();
 
+		public string DefaultDefinition { get { return Definitions.Count > 0 ? Definitions[0].Text : string.Empty; } }
+
 		public Word()
 		{
 		}

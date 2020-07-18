@@ -10,20 +10,43 @@
 	<Window.DataContext>
 		<viewModels:MainViewModel/>
 	</Window.DataContext>
+	<Window.Resources>
+		<DataTemplate x:Key="denisItemTemplate">
+			<TextBlock>
+				<Run Text="{Binding Path=Name}"/>
+				<Run> (</Run>
+				<Run Text="{Binding Path=Category}" FontStyle="Italic"/>
+				<Run>) </Run>
+				<Run Text="{Binding Path=Meaning}"/>
+			</TextBlock>
+		</DataTemplate>
+		<DataTemplate x:Key="iraItemTemplate">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock TextWrapping="Wrap">
+					<Run Text="{Binding Path=Name}"/>
+					<Run> -</Run>
+				</TextBlock>
+				<TextBlock TextWrapping="Wrap" Width="360">
+					<Run> </Run>
+					<Run Text="{Binding Path=DefaultDefinition, Mode=OneWay}"/>
+				</TextBlock>
+			</StackPanel>
+		</DataTemplate>
+	</Window.Resources>
 	<StackPanel Width="512" Margin="8">
 		<Button Margin="0 0 0 16" Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}">Train</Button>
+		<CheckBox Margin="0 0 0 16" IsChecked="{Binding Path=IsIra}">I am Ira</CheckBox>
 		<ListBox Height="512" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock>
-						<Run Text="{Binding Path=Name}"/>
-						<Run> (</Run>
-						<Run Text="{Binding Path=Category}" FontStyle="Italic"/>
-						<Run>) </Run>
-						<Run Text="{Binding Path=Meaning}"/>
-					</TextBlock>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
+			<ListBox.Style>
+				<Style TargetType="ListBox">
+					<Setter Property="ItemTemplate" Value="{DynamicResource denisItemTemplate}"/>
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding Path=IsIra}" Value="True">
+							<Setter Property="ItemTemplate" Value="{DynamicResource iraItemTemplate}"/>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</ListBox.Style>
 			<ListBox.ItemContainerStyle>
 				<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
 					<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
