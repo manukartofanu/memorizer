@@ -62,7 +62,7 @@ namespace Manurizer.ViewModels
 
 		private void Train(object window)
 		{
-			var viewModel = new TrainViewModel { Words = Words };
+			var viewModel = new TrainViewModel { Words = Words.Where(t => t.Definitions.Count > 0).ToArray() };
 			new TrainWindow(window, viewModel).ShowDialog();
 		}
 
