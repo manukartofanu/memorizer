@@ -89,6 +89,7 @@ namespace Manurizer.ViewModels
 			}
 			if (CurrentWord.Name == Answer || ShowCorrectAnswer)
 			{
+				Answer = string.Empty;
 				_currentIndex++;
 				if (_currentIndex >= Words.Count)
 				{
