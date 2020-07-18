@@ -32,7 +32,10 @@ namespace Manurizer.ViewModels
 				if (_words.Count > 0)
 				{
 					CurrentWord = Words[_currentIndex];
-					CurrentDefinition = CurrentWord.Definitions[_definitionChooser.Next(CurrentWord.Definitions.Count)];
+					if (CurrentWord.Definitions.Count > 0)
+					{
+						CurrentDefinition = CurrentWord.Definitions[_definitionChooser.Next(CurrentWord.Definitions.Count)];
+					}
 				}
 				RaisePropertyChanged(nameof(Words));
 			}
