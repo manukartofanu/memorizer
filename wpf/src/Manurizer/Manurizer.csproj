@@ -155,8 +155,8 @@
     <Resource Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Manurizer.Core\Manurizer.Core.csproj">
-      <Project>{f86fd736-3b6f-4d94-aefb-e9371402622b}</Project>
+    <ProjectReference Include="..\Manurizer.Core\Manurizer.Core.csproj">
+      <Project>{c81faeda-9f38-4ce3-bcd2-516294bb8067}</Project>
       <Name>Manurizer.Core</Name>
     </ProjectReference>
   </ItemGroup>
