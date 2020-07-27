@@ -64,6 +64,7 @@ namespace Manurizer.ViewModels
 		private void Train(object window)
 		{
 			var viewModel = new TrainViewModel { Words = Words.Where(t => t.Definitions.Count > 0).ToArray() };
+			viewModel.InitializeQuiz();
 			new TrainWindow(window, viewModel).ShowDialog();
 		}
 

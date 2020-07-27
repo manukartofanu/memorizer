@@ -154,6 +154,12 @@
   <ItemGroup>
     <Resource Include="icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Manurizer.Core\Manurizer.Core.csproj">
+      <Project>{f86fd736-3b6f-4d94-aefb-e9371402622b}</Project>
+      <Name>Manurizer.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

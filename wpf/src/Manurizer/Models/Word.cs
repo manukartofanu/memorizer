@@ -1,10 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Manurizer.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 
 namespace Manurizer.Models
 {
-	public class Word
+	public class Word : IQuestion
 	{
 		[JsonProperty(PropertyName = "n")]
 		public string Name { get; set; }
@@ -40,6 +41,16 @@ namespace Manurizer.Models
 			{
 				Definitions.Add(new Definition { Text = item.Text, Examples = item.Examples });
 			}
+		}
+
+		public string GetQuestion()
+		{
+			return DefaultDefinition;
+		}
+
+		public bool CheckCorrectAnswer(string userAnswer)
+		{
+			return userAnswer == Name;
 		}
 	}
 }
