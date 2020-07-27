@@ -1,13 +1,14 @@
 ﻿using Manurizer.Models;
 using Manurizer.ViewModels;
 using Newtonsoft.Json;
-using Squirrel;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
 #if (!DEBUG)
+using Squirrel;
+using System.Reflection;
 using System.Threading.Tasks;
 #endif
 
@@ -47,16 +48,23 @@ namespace Manurizer.Views
 			{
 				using (var mgr = GetUpdateManager())
 				{
-					await mgr.UpdateApp();
+					var updateInfo = await mgr.CheckForUpdate();
+					if (updateInfo.ReleasesToApply.Any())
+					{
+						var updateResult = await mgr.UpdateApp();
+						MessageBox.Show($"You use {Assembly.GetExecutingAssembly().GetName().Version} version. Restart the Manurizer to use newer version.");
+					}
 				}
 			});
 #endif
 		}
 
+#if (!DEBUG)
 		private static UpdateManager GetUpdateManager()
 		{
 			return UpdateManager.GitHubUpdateManager("https://github.com/manukartofanu/memorizer").Result;
 		}
+#endif
 
 		private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		{
