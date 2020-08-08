@@ -1,5 +1,5 @@
 ﻿using Manurizer.Commands;
-using Manurizer.Models;
+using Manurizer.Core;
 using Manurizer.Views;
 using System;
 using System.Collections.ObjectModel;

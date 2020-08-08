@@ -1,5 +1,5 @@
 ﻿using Manurizer.Commands;
-using Manurizer.Models;
+using Manurizer.Core;
 using System;
 using System.ComponentModel;
 using System.Windows.Input;

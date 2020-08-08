@@ -1,9 +1,8 @@
-﻿using Manurizer.Core;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 
-namespace Manurizer.Models
+namespace Manurizer.Core
 {
 	public class Word : IQuestion
 	{

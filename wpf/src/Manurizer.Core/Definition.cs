@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Manurizer.Models
+namespace Manurizer.Core
 {
 	public class Definition
 	{

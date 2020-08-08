@@ -92,8 +92,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Models\Definition.cs" />
-    <Compile Include="Models\Word.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TrainViewModel.cs" />
     <Compile Include="ViewModels\WordViewModel.cs" />

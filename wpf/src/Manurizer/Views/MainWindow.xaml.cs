@@ -1,4 +1,4 @@
-﻿using Manurizer.Models;
+﻿using Manurizer.Core;
 using Manurizer.ViewModels;
 using Newtonsoft.Json;
 using System;
