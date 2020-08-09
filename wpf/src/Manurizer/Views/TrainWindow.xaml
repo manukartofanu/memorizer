@@ -12,16 +12,16 @@
 	</Window.DataContext>
 	<StackPanel Width="384" Margin="8">
 		<TextBlock Margin="0 4 0 0">Meaning</TextBlock>
-		<TextBox Height="64" Text="{Binding Path=CurrentQuestion}" TextWrapping="Wrap"/>
+		<TextBox Height="64" Text="{Binding Path=CurrentQuestion.Text, Mode=OneWay}" TextWrapping="Wrap"/>
 		<TextBlock Margin="0 16 0 0">Type answer here:</TextBlock>
 		<TextBox Text="{Binding Path=Answer}"/>
 		<TextBlock Margin="0 16 0 0">Correct Answer</TextBlock>
-		<TextBox>
+		<TextBox IsTabStop="False">
 			<TextBox.Style>
 				<Style TargetType="TextBox">
 					<Style.Triggers>
 						<DataTrigger Binding="{Binding Path=ShowCorrectAnswer}" Value="True">
-							<Setter Property="Text" Value="{Binding Path=CurrentWord.Name}"/>
+							<Setter Property="Text" Value="{Binding Path=CurrentQuestion.CorrectAnswer, Mode=OneWay}"/>
 						</DataTrigger>
 					</Style.Triggers>
 				</Style>

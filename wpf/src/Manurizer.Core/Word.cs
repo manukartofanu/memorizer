@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Manurizer.Core
 {
-	public class Word : IQuestion
+	public class Word
 	{
 		[JsonProperty(PropertyName = "n")]
 		public string Name { get; set; }
@@ -24,8 +24,6 @@ namespace Manurizer.Core
 		[JsonProperty(PropertyName = "d")]
 		public ObservableCollection<Definition> Definitions { get; set; } = new ObservableCollection<Definition>();
 
-		public string DefaultDefinition { get { return Definitions.Count > 0 ? Definitions[0].Text : string.Empty; } }
-
 		public Word()
 		{
 		}
@@ -40,16 +38,6 @@ namespace Manurizer.Core
 			{
 				Definitions.Add(new Definition { Text = item.Text, Examples = item.Examples });
 			}
-		}
-
-		public string GetQuestion()
-		{
-			return DefaultDefinition;
-		}
-
-		public bool CheckCorrectAnswer(string userAnswer)
-		{
-			return userAnswer == Name;
 		}
 	}
 }

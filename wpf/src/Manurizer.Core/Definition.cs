@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Manurizer.Core
 {
@@ -9,5 +10,8 @@ namespace Manurizer.Core
 
 		[JsonProperty(PropertyName = "e")]
 		public string Examples { get; set; }
+
+		[JsonProperty(PropertyName = "d")]
+		public DateTime? LastCorrectAnswerDate { get; set; }
 	}
 }

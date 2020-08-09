@@ -3,7 +3,7 @@ namespace Manurizer.Core
 {
 	public interface IQuestion
 	{
-		string GetQuestion();
+		string GetQuestionText();
 		bool CheckCorrectAnswer(string userAnswer);
 	}
 }

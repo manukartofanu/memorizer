@@ -10,8 +10,7 @@ namespace Manurizer.ViewModels
 	{
 		private QuizSequential _quiz = new QuizSequential();
 		private Word[] _words = new Word[0];
-		private Word _currentWord;
-		private string _currentQuestion;
+		private Question _currentQuestion;
 		private string _answer;
 		private bool _showCorrectAnswer;
 		public ICommand SubmitAnswerCommand { get; private set; }
@@ -23,9 +22,8 @@ namespace Manurizer.ViewModels
 
 		public void InitializeQuiz()
 		{
-			_quiz.Initialize(Words);
-			CurrentWord = (Word)_quiz.Next();
-			CurrentQuestion = CurrentWord?.GetQuestion();
+			_quiz.Initialize(Transformer.ToQuestionList(Words));
+			CurrentQuestion = (Question)_quiz.Next();
 		}
 
 		public Word[] Words
@@ -38,17 +36,7 @@ namespace Manurizer.ViewModels
 			}
 		}
 
-		public Word CurrentWord
-		{
-			get { return _currentWord; }
-			set
-			{
-				_currentWord = value;
-				RaisePropertyChanged(nameof(CurrentWord));
-			}
-		}
-
-		public string CurrentQuestion
+		public Question CurrentQuestion
 		{
 			get { return _currentQuestion; }
 			set
@@ -80,11 +68,10 @@ namespace Manurizer.ViewModels
 
 		private void SubmitAnswer()
 		{
-			if (CurrentWord.Name == Answer || ShowCorrectAnswer)
+			if (CurrentQuestion.CorrectAnswer == Answer || ShowCorrectAnswer)
 			{
 				Answer = string.Empty;
-				CurrentWord = (Word)_quiz.Next();
-				CurrentQuestion = CurrentWord?.GetQuestion();
+				CurrentQuestion = (Question)_quiz.Next();
 				ShowCorrectAnswer = false;
 			}
 			else

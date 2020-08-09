@@ -17,7 +17,7 @@ namespace Manurizer.Core.Test
 			return userAnswer == Answer;
 		}
 
-		public string GetQuestion()
+		public string GetQuestionText()
 		{
 			return Question;
 		}

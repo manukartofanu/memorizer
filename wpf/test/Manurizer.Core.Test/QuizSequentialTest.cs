@@ -18,7 +18,7 @@ namespace Manurizer.Core.Test
 			IQuiz quiz = new QuizSequential();
 			quiz.Initialize(new IQuestion[] { new QuestionMock("1", "a"), new QuestionMock("2", "b"), new QuestionMock("3", "c") });
 			IQuestion question = quiz.Next();
-			Assert.Equal("1", question.GetQuestion());
+			Assert.Equal("1", question.GetQuestionText());
 		}
 
 		[Fact]
@@ -28,7 +28,7 @@ namespace Manurizer.Core.Test
 			quiz.Initialize(new IQuestion[] { new QuestionMock("1", "a"), new QuestionMock("2", "b"), new QuestionMock("3", "c") });
 			quiz.Next();
 			IQuestion question = quiz.Next();
-			Assert.Equal("2", question.GetQuestion());
+			Assert.Equal("2", question.GetQuestionText());
 		}
 
 		[Fact]
@@ -40,7 +40,7 @@ namespace Manurizer.Core.Test
 			quiz.Next();
 			quiz.Next();
 			IQuestion question = quiz.Next();
-			Assert.Equal("1", question.GetQuestion());
+			Assert.Equal("1", question.GetQuestionText());
 		}
 	}
 }
