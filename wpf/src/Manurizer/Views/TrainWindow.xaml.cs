@@ -1,4 +1,5 @@
-﻿using Manurizer.ViewModels;
+﻿using Manurizer.Events;
+using Manurizer.ViewModels;
 using System.Windows;
 
 namespace Manurizer.Views
@@ -13,6 +14,12 @@ namespace Manurizer.Views
 			InitializeComponent();
 			Owner = (Window)window;
 			DataContext = viewModel;
+		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			var viewModel = (TrainViewModel)DataContext;
+			Communicator.RaiseUpdateWords(viewModel.GetQuestions());
 		}
 	}
 }

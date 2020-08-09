@@ -18,12 +18,15 @@ namespace Manurizer.Core
 			return result;
 		}
 
-		public static void UpdateWords(Word[] words, List<Question> questions)
+		public static void UpdateWords(IList<Word> words, List<Question> questions)
 		{
 			for (int i = 0; i < questions.Count; ++i)
 			{
 				var question = questions[i];
-				words[question.WordIndex].Definitions[question.DefinitionIndex].LastCorrectAnswerDate = question.CorrectAnswerDate;
+				if (question.CorrectAnswerDate != null)
+				{
+					words[question.WordIndex].Definitions[question.DefinitionIndex].LastCorrectAnswerDate = question.CorrectAnswerDate;
+				}
 			}
 		}
 	}

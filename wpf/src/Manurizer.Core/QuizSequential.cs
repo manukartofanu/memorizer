@@ -34,5 +34,10 @@ namespace Manurizer.Core
 				}
 			}
 		}
+
+		public List<Question> GetQuestions()
+		{
+			return _questions.ToList().Cast<Question>().ToList();
+		}
 	}
 }

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d"
-        Title="Train" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+        Title="Train" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner"
+		Closing="Window_Closing">
 	<Window.DataContext>
 		<viewModels:TrainViewModel/>
 	</Window.DataContext>

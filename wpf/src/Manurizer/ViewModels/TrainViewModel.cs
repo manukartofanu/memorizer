@@ -1,6 +1,7 @@
 ﻿using Manurizer.Commands;
 using Manurizer.Core;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -24,6 +25,11 @@ namespace Manurizer.ViewModels
 		{
 			_quiz.Initialize(Transformer.ToQuestionList(Words));
 			CurrentQuestion = (Question)_quiz.Next();
+		}
+
+		public List<Question> GetQuestions()
+		{
+			return _quiz.GetQuestions();
 		}
 
 		public Word[] Words
@@ -68,7 +74,7 @@ namespace Manurizer.ViewModels
 
 		private void SubmitAnswer()
 		{
-			if (CurrentQuestion.CorrectAnswer == Answer || ShowCorrectAnswer)
+			if (ShowCorrectAnswer || CurrentQuestion.CheckCorrectAnswer(Answer))
 			{
 				Answer = string.Empty;
 				CurrentQuestion = (Question)_quiz.Next();

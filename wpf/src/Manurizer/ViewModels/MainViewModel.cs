@@ -1,7 +1,9 @@
 ﻿using Manurizer.Commands;
 using Manurizer.Core;
+using Manurizer.Events;
 using Manurizer.Views;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -27,6 +29,7 @@ namespace Manurizer.ViewModels
 			WordCopyCommand = new DelegateCommand((t) => { CopyWord(); }, (t) => { return true; });
 			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(); }, (t) => { return true; });
 			TrainCommand = new DelegateCommand((t) => { Train(t); }, (t) => { return true; });
+			Communicator.UpdateWords += UpdateWords;
 		}
 
 		private void AddWord(object window)
@@ -66,6 +69,11 @@ namespace Manurizer.ViewModels
 			var viewModel = new TrainViewModel { Words = Words.Where(t => t.Definitions.Count > 0).ToArray() };
 			viewModel.InitializeQuiz();
 			new TrainWindow(window, viewModel).ShowDialog();
+		}
+
+		private void UpdateWords(List<Question> questions)
+		{
+			Transformer.UpdateWords(Words, questions);
 		}
 
 		public ObservableCollection<Word> Words
