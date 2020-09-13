@@ -9,7 +9,7 @@ namespace Manurizer.ViewModels
 {
 	public class TrainViewModel : INotifyPropertyChanged
 	{
-		private QuizSequential _quiz = new QuizSequential();
+		private QuizTimed _quiz = new QuizTimed();
 		private Word[] _words = new Word[0];
 		private Question _currentQuestion;
 		private string _answer;
@@ -74,10 +74,10 @@ namespace Manurizer.ViewModels
 
 		private void SubmitAnswer()
 		{
-			if (ShowCorrectAnswer || CurrentQuestion.CheckCorrectAnswer(Answer))
+			if (ShowCorrectAnswer || _quiz.CheckCorrectAnswer(Answer))
 			{
 				Answer = string.Empty;
-				CurrentQuestion = (Question)_quiz.Next();
+				CurrentQuestion = _quiz.Next();
 				ShowCorrectAnswer = false;
 			}
 			else

@@ -25,7 +25,7 @@ namespace Manurizer.Core
 				var question = questions[i];
 				if (question.CorrectAnswerDate != null)
 				{
-					words[question.WordIndex].Definitions[question.DefinitionIndex].LastCorrectAnswerDate = question.CorrectAnswerDate;
+					words[question.WordIndex].Definitions[question.DefinitionIndex].CorrectAnswerCount = question.CorrectAnswerCount;
 				}
 			}
 		}

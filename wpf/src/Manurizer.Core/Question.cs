@@ -7,7 +7,9 @@ namespace Manurizer.Core
 		public string Text { get; private set; }
 		public string CorrectAnswer { get; private set; }
 		public string UserAnswer { get; private set; }
+		public DateTime? DateCreated { get; private set; }
 		public DateTime? CorrectAnswerDate { get; private set; }
+		public int CorrectAnswerCount { get; set; }
 		public int WordIndex { get; private set; }
 		public int DefinitionIndex { get; private set; }
 
@@ -21,6 +23,16 @@ namespace Manurizer.Core
 		{
 			Text = text;
 			CorrectAnswer = answer;
+			WordIndex = wordIndex;
+			DefinitionIndex = definitionIndex;
+		}
+
+		public Question(string text, string answer, DateTime dateCreated, int correctAnswerCount, int wordIndex, int definitionIndex)
+		{
+			Text = text;
+			CorrectAnswer = answer;
+			DateCreated = dateCreated;
+			CorrectAnswerCount = correctAnswerCount;
 			WordIndex = wordIndex;
 			DefinitionIndex = definitionIndex;
 		}
