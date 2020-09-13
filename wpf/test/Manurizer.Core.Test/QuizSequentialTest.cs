@@ -8,7 +8,7 @@ namespace Manurizer.Core.Test
 		public void EmptyQuiz()
 		{
 			IQuiz quiz = new QuizSequential();
-			quiz.Initialize(new IQuestion[0]);
+			quiz.Initialize(new Question[0]);
 			Assert.Null(quiz.Next());
 		}
 
@@ -16,31 +16,31 @@ namespace Manurizer.Core.Test
 		public void CorrectFirstQuestion()
 		{
 			IQuiz quiz = new QuizSequential();
-			quiz.Initialize(new IQuestion[] { new QuestionMock("1", "a"), new QuestionMock("2", "b"), new QuestionMock("3", "c") });
-			IQuestion question = quiz.Next();
-			Assert.Equal("1", question.GetQuestionText());
+			quiz.Initialize(new Question[] { new Question("1", "a"), new Question("2", "b"), new Question("3", "c") });
+			Question question = quiz.Next();
+			Assert.Equal("1", question.Text);
 		}
 
 		[Fact]
 		public void CurrectSecondQuestion()
 		{
 			IQuiz quiz = new QuizSequential();
-			quiz.Initialize(new IQuestion[] { new QuestionMock("1", "a"), new QuestionMock("2", "b"), new QuestionMock("3", "c") });
+			quiz.Initialize(new Question[] { new Question("1", "a"), new Question("2", "b"), new Question("3", "c") });
 			quiz.Next();
-			IQuestion question = quiz.Next();
-			Assert.Equal("2", question.GetQuestionText());
+			Question question = quiz.Next();
+			Assert.Equal("2", question.Text);
 		}
 
 		[Fact]
 		public void CorrectCycle()
 		{
 			IQuiz quiz = new QuizSequential();
-			quiz.Initialize(new IQuestion[] { new QuestionMock("1", "a"), new QuestionMock("2", "b"), new QuestionMock("3", "c") });
+			quiz.Initialize(new Question[] { new Question("1", "a"), new Question("2", "b"), new Question("3", "c") });
 			quiz.Next();
 			quiz.Next();
 			quiz.Next();
-			IQuestion question = quiz.Next();
-			Assert.Equal("1", question.GetQuestionText());
+			Question question = quiz.Next();
+			Assert.Equal("1", question.Text);
 		}
 	}
 }

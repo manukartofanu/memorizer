@@ -5,16 +5,16 @@ namespace Manurizer.Core
 {
 	public class QuizSequential : IQuiz
 	{
-		private IQuestion[] _questions;
+		private Question[] _questions;
 		private int _currentQuestionNumber;
 
-		public void Initialize(IEnumerable<IQuestion> questions)
+		public void Initialize(IEnumerable<Question> questions)
 		{
 			_questions = questions.ToArray();
 			_currentQuestionNumber = -1;
 		}
 
-		public IQuestion Next()
+		public Question Next()
 		{
 			_currentQuestionNumber++;
 			if (_currentQuestionNumber < _questions.Length)

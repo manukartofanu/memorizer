@@ -2,7 +2,7 @@
 
 namespace Manurizer.Core
 {
-	public class Question : IQuestion
+	public class Question
 	{
 		public string Text { get; private set; }
 		public string CorrectAnswer { get; private set; }
@@ -11,17 +11,18 @@ namespace Manurizer.Core
 		public int WordIndex { get; private set; }
 		public int DefinitionIndex { get; private set; }
 
+		public Question(string text, string answer)
+		{
+			Text = text;
+			CorrectAnswer = answer;
+		}
+
 		public Question(string text, string answer, int wordIndex, int definitionIndex)
 		{
 			Text = text;
 			CorrectAnswer = answer;
 			WordIndex = wordIndex;
 			DefinitionIndex = definitionIndex;
-		}
-
-		public string GetQuestionText()
-		{
-			return Text;
 		}
 
 		public bool CheckCorrectAnswer(string userAnswer)
