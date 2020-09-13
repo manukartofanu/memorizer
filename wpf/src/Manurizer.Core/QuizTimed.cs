@@ -59,6 +59,10 @@ namespace Manurizer.Core
 
 		public bool CheckCorrectAnswer(string userAnswer)
 		{
+			if (_repeatCount.Count == 0)
+			{
+				return false;
+			}
 			var isCorrect = _questions[_repeatCount[_currentQuestionIndex].Index].CheckCorrectAnswer(userAnswer);
 			if (isCorrect)
 			{
