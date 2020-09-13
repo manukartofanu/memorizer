@@ -23,6 +23,10 @@ namespace Manurizer.Core
 			for (int i = 0; i < _questions.Length; ++i)
 			{
 				int expectedCount = (DateTime.Now - (_questions[i].DateCreated ?? DateTime.Now)).Days;
+				if (_questions[i].DateCreated == null)
+				{
+					_questions[i].DateCreated = DateTime.Now;
+				}
 				int diff = expectedCount - _questions[i].CorrectAnswerCount;
 				if (diff > 0)
 				{
@@ -66,7 +70,6 @@ namespace Manurizer.Core
 			var isCorrect = _questions[_repeatCount[_currentQuestionIndex].Index].CheckCorrectAnswer(userAnswer);
 			if (isCorrect)
 			{
-				_questions[_repeatCount[_currentQuestionIndex].Index].CorrectAnswerCount++;
 				_repeatCount[_currentQuestionIndex].Count--;
 				if (_repeatCount[_currentQuestionIndex].Count <= 0)
 				{

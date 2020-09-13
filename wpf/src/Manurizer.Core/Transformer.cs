@@ -23,10 +23,8 @@ namespace Manurizer.Core
 			for (int i = 0; i < questions.Count; ++i)
 			{
 				var question = questions[i];
-				if (question.CorrectAnswerDate != null)
-				{
-					words[question.WordIndex].Definitions[question.DefinitionIndex].CorrectAnswerCount = question.CorrectAnswerCount;
-				}
+				words[question.WordIndex].Definitions[question.DefinitionIndex].CorrectAnswerCount = question.CorrectAnswerCount;
+				words[question.WordIndex].Definitions[question.DefinitionIndex].DateCreated = question.DateCreated;
 			}
 		}
 	}

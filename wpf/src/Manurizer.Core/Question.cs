@@ -7,8 +7,7 @@ namespace Manurizer.Core
 		public string Text { get; private set; }
 		public string CorrectAnswer { get; private set; }
 		public string UserAnswer { get; private set; }
-		public DateTime? DateCreated { get; private set; }
-		public DateTime? CorrectAnswerDate { get; private set; }
+		public DateTime? DateCreated { get; set; }
 		public int CorrectAnswerCount { get; set; }
 		public int WordIndex { get; private set; }
 		public int DefinitionIndex { get; private set; }
@@ -43,7 +42,7 @@ namespace Manurizer.Core
 			bool result = userAnswer == CorrectAnswer;
 			if (result)
 			{
-				CorrectAnswerDate = DateTime.Now;
+				CorrectAnswerCount++;
 			}
 			return result;
 		}
