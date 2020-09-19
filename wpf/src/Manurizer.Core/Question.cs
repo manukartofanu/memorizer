@@ -26,7 +26,7 @@ namespace Manurizer.Core
 			DefinitionIndex = definitionIndex;
 		}
 
-		public Question(string text, string answer, DateTime dateCreated, int correctAnswerCount, int wordIndex, int definitionIndex)
+		public Question(string text, string answer, DateTime? dateCreated, int correctAnswerCount, int wordIndex, int definitionIndex)
 		{
 			Text = text;
 			CorrectAnswer = answer;

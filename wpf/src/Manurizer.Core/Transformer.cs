@@ -12,7 +12,8 @@ namespace Manurizer.Core
 				var word = words[wordIndex];
 				for (int definitionIndex = 0; definitionIndex < words[wordIndex].Definitions.Count; ++definitionIndex)
 				{
-					result.Add(new Question(word.Definitions[definitionIndex].Text, word.Name, wordIndex, definitionIndex));
+					var definition = words[wordIndex].Definitions[definitionIndex];
+					result.Add(new Question(word.Definitions[definitionIndex].Text, word.Name, definition.DateCreated, definition.CorrectAnswerCount, wordIndex, definitionIndex));
 				}
 			}
 			return result;
