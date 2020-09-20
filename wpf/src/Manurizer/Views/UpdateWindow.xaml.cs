@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 #if (!DEBUG)
 using Squirrel;
+using System.Linq;
 using System.Threading.Tasks;
 #endif
 
@@ -42,15 +42,21 @@ namespace Manurizer.Views
 						Close();
 					});
 				}
+				if (restartNeeded)
+				{
+					Dispatcher.Invoke(() =>
+					{
+						UpdateManager.RestartApp();
+					});
+				}
+				else
+				{
+					Dispatcher.Invoke(() =>
+					{
+						Close();
+					});
+				}
 			});
-			if (restartNeeded)
-			{
-				UpdateManager.RestartApp();
-			}
-			else
-			{
-				Close();
-			}
 #endif
 		}
 
@@ -61,6 +67,5 @@ namespace Manurizer.Views
 			return UpdateManager.GitHubUpdateManager("https://github.com/manukartofanu/memorizer").Result;
 		}
 #endif
-
 	}
 }
