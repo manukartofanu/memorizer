@@ -19,17 +19,6 @@ namespace Manurizer.Views
 			InitializeComponent();
 		}
 
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			var viewModel = (MainViewModel)DataContext;
-			var saveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Manurizer");
-			if (!Directory.Exists(saveDirectory))
-			{
-				Directory.CreateDirectory(saveDirectory);
-			}
-			File.WriteAllText(Path.Combine(saveDirectory, "save.txt"), JsonConvert.SerializeObject(viewModel.Words));
-		}
-
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			string filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Manurizer", "save.txt");
@@ -44,6 +33,22 @@ namespace Manurizer.Views
 		{
 			var viewModel = (MainViewModel)DataContext;
 			viewModel.EditWord(this);
+		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			var viewModel = (MainViewModel)DataContext;
+			var saveDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Manurizer");
+			if (!Directory.Exists(saveDirectory))
+			{
+				Directory.CreateDirectory(saveDirectory);
+			}
+			File.WriteAllText(Path.Combine(saveDirectory, "save.txt"), JsonConvert.SerializeObject(viewModel.Words));
+		}
+
+		private void Window_Closed(object sender, EventArgs e)
+		{
+			Application.Current.Shutdown();
 		}
 	}
 }

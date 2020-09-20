@@ -13,7 +13,7 @@ namespace ManurizerWpf
 #if (!DEBUG)
 			new UpdateWindow().ShowDialog();
 #endif
-			new MainWindow().ShowDialog();
+			new MainWindow().Show();
 		}
 	}
 }
