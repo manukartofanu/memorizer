@@ -31,6 +31,7 @@ namespace Manurizer.Views
 						if (updateInfo.ReleasesToApply.Any())
 						{
 							var updateResult = await mgr.UpdateApp();
+							restartNeeded = true;
 						}
 					}
 				}
