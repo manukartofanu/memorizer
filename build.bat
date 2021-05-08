@@ -38,11 +38,14 @@ cd %BAT_PATH%
 
 rem Create Squirrel Exe
 wpf\packages\squirrel.windows.1.9.1\tools\Squirrel.exe --releasify %RELEASE_SQUIRREL_FOLDER%\Manurizer.%VersionNumber%.nupkg --setupIcon wpf\src\Manurizer\icon.ico
-del Releases\Manurizer.exe
+if exist Releases\Manurizer.exe (
+	del Releases\Manurizer.exe
+)
 rename Releases\Setup.exe Manurizer.exe
 
 rem Remove Temp Files and Folder
-rmdir /q /s %RELEASE_BUILD_FOLDER%
-rmdir /q /s %RELEASE_FILES_FOLDER%
-rmdir /q /s %RELEASE_SQUIRREL_FOLDER%
-del Update.exe
+rmdir %RELEASE_BUILD_FOLDER% /s /q
+rmdir %RELEASE_SQUIRREL_FOLDER% /s /q
+if exist Update.exe (
+	del Update.exe
+)
