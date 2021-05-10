@@ -12,7 +12,8 @@ namespace Manurizer.Core
 				var word = words[wordIndex];
 				for (int definitionIndex = 0; definitionIndex < words[wordIndex].Definitions.Count; ++definitionIndex)
 				{
-					result.Add(new Question(word.Definitions[definitionIndex].Text, word.Name, wordIndex, definitionIndex));
+					var definition = words[wordIndex].Definitions[definitionIndex];
+					result.Add(new Question(word.Definitions[definitionIndex].Text, word.Name, definition.DateCreated, definition.CorrectAnswerCount, wordIndex, definitionIndex));
 				}
 			}
 			return result;
@@ -23,10 +24,8 @@ namespace Manurizer.Core
 			for (int i = 0; i < questions.Count; ++i)
 			{
 				var question = questions[i];
-				if (question.CorrectAnswerDate != null)
-				{
-					words[question.WordIndex].Definitions[question.DefinitionIndex].LastCorrectAnswerDate = question.CorrectAnswerDate;
-				}
+				words[question.WordIndex].Definitions[question.DefinitionIndex].CorrectAnswerCount = question.CorrectAnswerCount;
+				words[question.WordIndex].Definitions[question.DefinitionIndex].DateCreated = question.DateCreated;
 			}
 		}
 	}

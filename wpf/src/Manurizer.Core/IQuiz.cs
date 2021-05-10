@@ -4,7 +4,7 @@ namespace Manurizer.Core
 {
 	public interface IQuiz
 	{
-		void Initialize(IEnumerable<IQuestion> questions);
-		IQuestion Next();
+		void Initialize(IEnumerable<Question> questions);
+		Question Next();
 	}
 }

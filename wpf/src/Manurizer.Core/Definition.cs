@@ -11,7 +11,10 @@ namespace Manurizer.Core
 		[JsonProperty(PropertyName = "e")]
 		public string Examples { get; set; }
 
-		[JsonProperty(PropertyName = "d")]
-		public DateTime? LastCorrectAnswerDate { get; set; }
+		[JsonProperty(PropertyName = "dc")]
+		public DateTime? DateCreated { get; set; }
+
+		[JsonProperty(PropertyName = "cc")]
+		public int CorrectAnswerCount { get; set; }
 	}
 }

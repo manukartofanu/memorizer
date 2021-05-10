@@ -2,14 +2,21 @@
 
 namespace Manurizer.Core
 {
-	public class Question : IQuestion
+	public class Question
 	{
 		public string Text { get; private set; }
 		public string CorrectAnswer { get; private set; }
 		public string UserAnswer { get; private set; }
-		public DateTime? CorrectAnswerDate { get; private set; }
+		public DateTime? DateCreated { get; set; }
+		public int CorrectAnswerCount { get; set; }
 		public int WordIndex { get; private set; }
 		public int DefinitionIndex { get; private set; }
+
+		public Question(string text, string answer)
+		{
+			Text = text;
+			CorrectAnswer = answer;
+		}
 
 		public Question(string text, string answer, int wordIndex, int definitionIndex)
 		{
@@ -19,9 +26,14 @@ namespace Manurizer.Core
 			DefinitionIndex = definitionIndex;
 		}
 
-		public string GetQuestionText()
+		public Question(string text, string answer, DateTime? dateCreated, int correctAnswerCount, int wordIndex, int definitionIndex)
 		{
-			return Text;
+			Text = text;
+			CorrectAnswer = answer;
+			DateCreated = dateCreated;
+			CorrectAnswerCount = correctAnswerCount;
+			WordIndex = wordIndex;
+			DefinitionIndex = definitionIndex;
 		}
 
 		public bool CheckCorrectAnswer(string userAnswer)
@@ -30,7 +42,7 @@ namespace Manurizer.Core
 			bool result = userAnswer == CorrectAnswer;
 			if (result)
 			{
-				CorrectAnswerDate = DateTime.Now;
+				CorrectAnswerCount++;
 			}
 			return result;
 		}

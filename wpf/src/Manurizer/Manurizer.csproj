@@ -78,6 +78,7 @@
       <HintPath>..\..\packages\squirrel.windows.1.9.1\lib\Net45\Squirrel.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xaml">
@@ -102,6 +103,9 @@
     <Compile Include="Views\TrainWindow.xaml.cs">
       <DependentUpon>TrainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdateWindow.xaml.cs">
+      <DependentUpon>UpdateWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WordWindow.xaml.cs">
       <DependentUpon>WordWindow.xaml</DependentUpon>
     </Compile>
@@ -115,6 +119,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TrainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +166,9 @@
       <Project>{c81faeda-9f38-4ce3-bcd2-516294bb8067}</Project>
       <Name>Manurizer.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon_64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
