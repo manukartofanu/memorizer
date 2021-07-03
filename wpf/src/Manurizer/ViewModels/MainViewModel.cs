@@ -15,9 +15,7 @@ namespace Manurizer.ViewModels
 	{
 		private ObservableCollection<Word> _words = new ObservableCollection<Word>();
 		private Word _selectedWord;
-		private bool _isIra;
 		public ICommand WordAddCommand { get; private set; }
-		public ICommand WordViewCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
 		public ICommand WordDeleteCommand { get; private set; }
 		public ICommand TrainCommand { get; private set; }
@@ -25,7 +23,6 @@ namespace Manurizer.ViewModels
 		public MainViewModel()
 		{
 			WordAddCommand = new DelegateCommand((t) => { AddWord(t); }, (t) => { return true; });
-			WordViewCommand = new DelegateCommand((t) => { EditWord(t); }, (t) => { return true; });
 			WordCopyCommand = new DelegateCommand((t) => { CopyWord(); }, (t) => { return true; });
 			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(); }, (t) => { return true; });
 			TrainCommand = new DelegateCommand((t) => { Train(t); }, (t) => { return true; });
@@ -93,16 +90,6 @@ namespace Manurizer.ViewModels
 			{
 				_selectedWord = value;
 				RaisePropertyChanged(nameof(SelectedWord));
-			}
-		}
-
-		public bool IsIra
-		{
-			get { return _isIra; }
-			set
-			{
-				_isIra = value;
-				RaisePropertyChanged(nameof(IsIra));
 			}
 		}
 

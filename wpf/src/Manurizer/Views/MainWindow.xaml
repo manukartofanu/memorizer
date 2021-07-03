@@ -10,95 +10,125 @@
 	<Window.DataContext>
 		<viewModels:MainViewModel/>
 	</Window.DataContext>
-	<Window.Resources>
-		<DataTemplate x:Key="denisItemTemplate">
-			<TextBlock>
-				<Run Text="{Binding Path=Name}"/>
-				<Run> (</Run>
-				<Run Text="{Binding Path=Category}" FontStyle="Italic"/>
-				<Run>) </Run>
-				<Run Text="{Binding Path=Meaning}"/>
-			</TextBlock>
-		</DataTemplate>
-		<DataTemplate x:Key="iraItemTemplate">
-			<StackPanel Orientation="Horizontal">
-				<TextBlock TextWrapping="Wrap">
-					<Run Text="{Binding Path=Name}"/>
-					<Run> -</Run>
-				</TextBlock>
-				<TextBlock TextWrapping="Wrap" Width="360">
-					<Run> </Run>
-					<Run Text="{Binding Path=DefaultDefinition, Mode=OneWay}"/>
-				</TextBlock>
-			</StackPanel>
-		</DataTemplate>
-	</Window.Resources>
-	<Grid>
-		<Grid Width="292" HorizontalAlignment="Left">
-			<ListView Padding="0 126 0 0" Width="292" Background="#F2F3F5" SelectedIndex="0">
-				<ListView.Resources>
-					<Style TargetType="ListViewItem">
-						<Style.Setters>
-							<Setter Property="Background" Value="Transparent"/>
-							<Setter Property="BorderThickness" Value="0"/>
-							<Setter Property="Template">
-								<Setter.Value>
-									<ControlTemplate TargetType="ListViewItem">
-										<Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="4">
-											<ContentPresenter VerticalAlignment="Center"/>
-										</Border>
-									</ControlTemplate>
-								</Setter.Value>
-							</Setter>
-						</Style.Setters>
-						<Style.Triggers>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter Property="Background" Value="#EBECEF"/>
-							</Trigger>
-							<Trigger Property="IsSelected" Value="True">
-								<Setter Property="Background" Value="#E4E6E9"/>
-							</Trigger>
-						</Style.Triggers>
-					</Style>
-				</ListView.Resources>
-				<ListViewItem Width="260" Height="40">
-					<TextBlock>Vocabulary list</TextBlock>
-				</ListViewItem>
-				<ListViewItem Width="260" Height="40">
-					<TextBlock>Group management</TextBlock>
-				</ListViewItem>
-				<ListViewItem Width="260" Height="40">
-					<TextBlock>Training</TextBlock>
-				</ListViewItem>
-				<ListViewItem Width="260" Height="40">
-					<TextBlock>Settings</TextBlock>
-				</ListViewItem>
-			</ListView>
-		</Grid>
-		<StackPanel Width="512" Height="1000" Margin="8">
-			<Button Margin="0 0 0 16" Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}">Train</Button>
-			<CheckBox Margin="0 0 0 16" IsChecked="{Binding Path=IsIra}">I am Ira</CheckBox>
-			<ListBox Height="512" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}">
-				<ListBox.Style>
-					<Style TargetType="ListBox">
-						<Setter Property="ItemTemplate" Value="{DynamicResource denisItemTemplate}"/>
-						<Style.Triggers>
-							<DataTrigger Binding="{Binding Path=IsIra}" Value="True">
-								<Setter Property="ItemTemplate" Value="{DynamicResource iraItemTemplate}"/>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</ListBox.Style>
+	<DockPanel>
+		<ListView Padding="0 126 0 0" Width="292" Background="#F2F3F5" SelectedIndex="0" DockPanel.Dock="Left">
+			<ListView.Resources>
+				<Style TargetType="ListViewItem">
+					<Style.Setters>
+						<Setter Property="Background" Value="Transparent"/>
+						<Setter Property="BorderThickness" Value="0"/>
+						<Setter Property="Margin" Value="0 8 0 8"/>
+						<Setter Property="Foreground" Value="#6D747C"/>
+						<Setter Property="FontSize" Value="16"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="ListViewItem">
+									<Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="4">
+										<ContentPresenter VerticalAlignment="Center"/>
+									</Border>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style.Setters>
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#EBECEF"/>
+						</Trigger>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="Background" Value="#E4E6E9"/>
+							<Setter Property="Foreground" Value="#011627"/>
+							<Setter Property="FontWeight" Value="SemiBold"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</ListView.Resources>
+			<ListViewItem Width="260" Height="40">
+				<TextBlock>Vocabulary list</TextBlock>
+			</ListViewItem>
+			<ListViewItem Width="260" Height="40">
+				<TextBlock>Group management</TextBlock>
+			</ListViewItem>
+			<ListViewItem Width="260" Height="40">
+				<TextBlock>Training</TextBlock>
+			</ListViewItem>
+			<ListViewItem Width="260" Height="40">
+				<TextBlock>Settings</TextBlock>
+			</ListViewItem>
+		</ListView>
+		<Grid>
+			<ListBox Height="300" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}"
+					 BorderBrush="Transparent">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock>
+								<Run Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="16" Foreground="Black"/>
+								<Run FontSize="14" Foreground="#555564"> | </Run>
+								<Run Text="{Binding Path=Category}" FontSize="14" Foreground="#555564"/>
+								<Run FontSize="14" Foreground="#555564"> | </Run>
+								<Run Text="{Binding Path=Meaning}" FontSize="14" Foreground="Black"/>
+						</TextBlock>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
 				<ListBox.ItemContainerStyle>
 					<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
 						<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
 					</Style>
 				</ListBox.ItemContainerStyle>
 			</ListBox>
-			<Button Margin="0 4 0 0" Command="{Binding Path=WordAddCommand}" CommandParameter="{Binding ElementName=window}">Add Word</Button>
-			<Button Margin="0 4 0 0" Command="{Binding Path=WordViewCommand}" CommandParameter="{Binding ElementName=window}">View Word</Button>
-			<Button Margin="0 16 0 0" Command="{Binding Path=WordCopyCommand}">Copy Word</Button>
-			<Button Margin="0 32 0 0" Command="{Binding Path=WordDeleteCommand}">Delete Word</Button>
-		</StackPanel>
-	</Grid>
+			<Button DockPanel.Dock="Right" Width="122" Height="44" HorizontalAlignment="Right" VerticalAlignment="Top"
+					Margin="0 80 97 0" Background="#011627" Foreground="White" FontWeight="SemiBold" FontSize="20"
+					BorderThickness="2" BorderBrush="#011627"
+					Command="{Binding Path=WordAddCommand}" CommandParameter="{Binding ElementName=window}">
+				<Button.Resources>
+					<Style TargetType="Border">
+						<Setter Property="CornerRadius" Value="4"/>
+					</Style>
+				</Button.Resources>
+				Add word
+			</Button>
+			<Button DockPanel.Dock="Right" Width="122" Height="44" HorizontalAlignment="Right" VerticalAlignment="Top"
+					Margin="0 136 97 0" Background="Transparent" Foreground="#011627" FontWeight="SemiBold" FontSize="20"
+					BorderThickness="2" BorderBrush="#011627"
+					Command="{Binding Path=WordDeleteCommand}">
+				<Button.Resources>
+					<Style TargetType="Border">
+						<Setter Property="CornerRadius" Value="4"/>
+					</Style>
+				</Button.Resources>
+				Delete word
+			</Button>
+			<Button DockPanel.Dock="Right" Width="122" Height="44" HorizontalAlignment="Right" VerticalAlignment="Top"
+					Margin="0 80 231 0" Background="Transparent" Foreground="#011627" FontWeight="SemiBold" FontSize="20"
+					BorderThickness="2" BorderBrush="#011627"
+					Command="{Binding Path=WordCopyCommand}">
+				<Button.Resources>
+					<Style TargetType="Border">
+						<Setter Property="CornerRadius" Value="4"/>
+					</Style>
+				</Button.Resources>
+				Copy word
+			</Button>
+			<Button DockPanel.Dock="Right" Width="122" Height="44" HorizontalAlignment="Right" VerticalAlignment="Top"
+					Margin="0 80 366 0" Background="Transparent" Foreground="#011627" FontWeight="SemiBold" FontSize="20"
+					BorderThickness="2" BorderBrush="#011627">
+				<Button.Resources>
+					<Style TargetType="Border">
+						<Setter Property="CornerRadius" Value="4"/>
+					</Style>
+				</Button.Resources>
+				Add topic
+			</Button>
+			<Button DockPanel.Dock="Right" Width="122" Height="44" HorizontalAlignment="Right" VerticalAlignment="Top"
+					Margin="0 80 498 0" Background="Transparent" Foreground="#011627" FontWeight="SemiBold" FontSize="20"
+					BorderThickness="2" BorderBrush="#011627"
+					Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}">
+				<Button.Resources>
+					<Style TargetType="Border">
+						<Setter Property="CornerRadius" Value="4"/>
+					</Style>
+				</Button.Resources>
+				Train
+			</Button>
+		</Grid>
+	</DockPanel>
 </Window>
