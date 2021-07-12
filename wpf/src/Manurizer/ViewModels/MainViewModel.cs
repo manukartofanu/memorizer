@@ -15,10 +15,12 @@ namespace Manurizer.ViewModels
 	{
 		private ObservableCollection<Word> _words = new ObservableCollection<Word>();
 		private Word _selectedWord;
+		private bool _isNavigatorExpanded = true;
 		public ICommand WordAddCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
 		public ICommand WordDeleteCommand { get; private set; }
 		public ICommand TrainCommand { get; private set; }
+		public ICommand NavigatorExpandCommand { get; private set; }
 
 		public MainViewModel()
 		{
@@ -26,6 +28,7 @@ namespace Manurizer.ViewModels
 			WordCopyCommand = new DelegateCommand((t) => { CopyWord(); }, (t) => { return true; });
 			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(); }, (t) => { return true; });
 			TrainCommand = new DelegateCommand((t) => { Train(t); }, (t) => { return true; });
+			NavigatorExpandCommand = new DelegateCommand((t) => { IsNavigatorExpanded = !IsNavigatorExpanded;});
 			Communicator.UpdateWords += UpdateWords;
 		}
 
@@ -90,6 +93,16 @@ namespace Manurizer.ViewModels
 			{
 				_selectedWord = value;
 				RaisePropertyChanged(nameof(SelectedWord));
+			}
+		}
+
+		public bool IsNavigatorExpanded
+		{
+			get { return _isNavigatorExpanded; }
+			set
+			{
+				_isNavigatorExpanded = value;
+				RaisePropertyChanged(nameof(IsNavigatorExpanded));
 			}
 		}
 
