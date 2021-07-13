@@ -34,10 +34,23 @@
 			<Setter Property="Background" Value="#FFFFFF"/>
 			<Setter Property="Foreground" Value="#011627"/>
 		</Style>
+		<Duration x:Key="DurationResizeNavigator">0:0:0.3</Duration>
+		<Storyboard x:Key="StoryboardConstrictNavigator">
+			<DoubleAnimation Storyboard.TargetName="gridNavigation" Storyboard.TargetProperty="Width"
+							 From="240" To="72" Duration="{StaticResource DurationResizeNavigator}"/>
+			<ThicknessAnimation Storyboard.TargetName="buttonExpand" Storyboard.TargetProperty="Margin"
+								From="228 6 0 0" To="60 6 0 0" Duration="{StaticResource DurationResizeNavigator}"/>
+		</Storyboard>
+		<Storyboard x:Key="StoryboardExpandNavigator">
+			<DoubleAnimation Storyboard.TargetName="gridNavigation" Storyboard.TargetProperty="Width"
+							 From="72" To="240" Duration="{StaticResource DurationResizeNavigator}"/>
+			<ThicknessAnimation Storyboard.TargetName="buttonExpand" Storyboard.TargetProperty="Margin"
+								From="60 6 0 0" To="228 6 0 0" Duration="{StaticResource DurationResizeNavigator}"/>
+		</Storyboard>
 	</Window.Resources>
 	<Grid>
 		<DockPanel Background="#FFFFFF">
-			<Grid DockPanel.Dock="Left" Name="gridNavigation">
+			<Grid Name="gridNavigation" DockPanel.Dock="Left" Width="240">
 				<ListView Padding="0 28 0 0" Background="#F2F3F5"
 						  SelectionMode="Single" SelectedIndex="0" BorderThickness="0">
 					<ListView.Resources>
@@ -71,7 +84,22 @@
 									<Setter Property="FontWeight" Value="SemiBold"/>
 								</Trigger>
 								<DataTrigger Binding="{Binding Path=IsNavigatorExpanded}" Value="False">
-									<Setter Property="Width" Value="40"/>
+									<DataTrigger.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<DoubleAnimation Storyboard.TargetProperty="Width"
+																 From="208" To="40" Duration="{StaticResource DurationResizeNavigator}"/>
+											</Storyboard>
+										</BeginStoryboard>
+									</DataTrigger.EnterActions>
+									<DataTrigger.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<DoubleAnimation Storyboard.TargetProperty="Width"
+																 From="40" To="208" Duration="{StaticResource DurationResizeNavigator}"/>
+											</Storyboard>
+										</BeginStoryboard>
+									</DataTrigger.ExitActions>
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
@@ -158,16 +186,6 @@
 						</Style>
 					</Rectangle.Style>
 				</Rectangle>
-				<Grid.Style>
-					<Style TargetType="Grid">
-						<Setter Property="Width" Value="240"/>
-						<Style.Triggers>
-							<DataTrigger Binding="{Binding Path=IsNavigatorExpanded}" Value="False">
-								<Setter Property="Width" Value="72"/>
-							</DataTrigger>
-						</Style.Triggers>
-					</Style>
-				</Grid.Style>
 			</Grid>
 			<Grid>
 				<ListBox Height="300" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}"
@@ -235,8 +253,9 @@
 				</Button>
 			</Grid>
 		</DockPanel>
-		<Button Width="24" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"
-				BorderBrush="#DFE3EC" BorderThickness="2" Background="#FFFFFF" Command="{Binding Path=NavigatorExpandCommand}">
+		<Button Name="buttonExpand" Width="24" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"
+				BorderBrush="#DFE3EC" BorderThickness="2" Background="#FFFFFF" Margin="228 6 0 0"
+				Click="ButtonExpand_Click" Command="{Binding Path=NavigatorExpandCommand}" CommandParameter="{Binding Path=IsNavigatorExpanded}">
 			<Button.Resources>
 				<Style TargetType="Border">
 					<Setter Property="CornerRadius" Value="12"/>
@@ -245,7 +264,6 @@
 			<Button.Style>
 				<Style TargetType="Button">
 					<Setter Property="Visibility" Value="Hidden"/>
-					<Setter Property="Margin" Value="228 6 0 0"/>
 					<Style.Triggers>
 						<DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=gridNavigation}" Value="True">
 							<Setter Property="Visibility" Value="Visible"/>
@@ -253,9 +271,6 @@
 						<Trigger Property="IsMouseOver" Value="True">
 							<Setter Property="Visibility" Value="Visible"/>
 						</Trigger>
-						<DataTrigger Binding="{Binding Path=IsNavigatorExpanded}" Value="False">
-							<Setter Property="Margin" Value="60 6 0 0"/>
-						</DataTrigger>
 					</Style.Triggers>
 				</Style>
 			</Button.Style>
