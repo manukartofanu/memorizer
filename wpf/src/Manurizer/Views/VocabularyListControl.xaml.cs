@@ -1,4 +1,5 @@
 ﻿using Manurizer.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Manurizer.Views
@@ -16,7 +17,7 @@ namespace Manurizer.Views
 		private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		{
 			var viewModel = (VocabularyListViewModel)DataContext;
-			viewModel.EditWord(this);
+			viewModel.EditWord(Window.GetWindow(this));
 		}
 	}
 }
