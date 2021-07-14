@@ -254,22 +254,44 @@
 			</Grid>
 		</DockPanel>
 		<Button Name="buttonExpand" Width="24" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"
-				BorderBrush="#DFE3EC" BorderThickness="2" Background="#FFFFFF" Margin="228 6 0 0"
+				BorderBrush="#DFE3EC" BorderThickness="2" Margin="228 6 0 0"
 				Click="ButtonExpand_Click" Command="{Binding Path=NavigatorExpandCommand}" CommandParameter="{Binding Path=IsNavigatorExpanded}">
 			<Button.Resources>
 				<Style TargetType="Border">
 					<Setter Property="CornerRadius" Value="12"/>
 				</Style>
 			</Button.Resources>
+			<Button.Template>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+						<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsDefaulted" Value="True">
+							<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" TargetName="border" Value="#555564"/>
+							<Setter Property="BorderThickness" TargetName="border" Value="0"/>
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Background" TargetName="border" Value="#555564"/>
+							<Setter Property="BorderThickness" TargetName="border" Value="0"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Button.Template>
 			<Button.Style>
 				<Style TargetType="Button">
 					<Setter Property="Visibility" Value="Hidden"/>
+					<Setter Property="Background" Value="#FFFFFF"/>
 					<Style.Triggers>
 						<DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=gridNavigation}" Value="True">
 							<Setter Property="Visibility" Value="Visible"/>
 						</DataTrigger>
 						<Trigger Property="IsMouseOver" Value="True">
 							<Setter Property="Visibility" Value="Visible"/>
+							<Setter Property="Foreground" Value="#FFFFFF"/>
 						</Trigger>
 					</Style.Triggers>
 				</Style>
