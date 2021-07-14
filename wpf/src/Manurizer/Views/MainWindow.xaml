@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Manurizer" Width="1280" Height="720" Closing="Window_Closing" Closed="Window_Closed" Loaded="Window_Loaded" Name="window">
+        Title="Manurizer" Width="1280" Height="720" Closing="Window_Closing" Closed="Window_Closed" Name="window">
 	<Window.DataContext>
 		<viewModels:MainViewModel/>
 	</Window.DataContext>
@@ -15,25 +15,6 @@
 		<Geometry x:Key="GeometryGroup">F0 M32,32z M0,0z M7,7C7,6.44772,7.44772,6,8,6L14,6C14.5523,6,15,6.44772,15,7L15,13C15,13.5523,14.5523,14,14,14L8,14C7.44772,14,7,13.5523,7,13L7,7z M7,17C7,16.4477,7.44772,16,8,16L14,16C14.5523,16,15,16.4477,15,17L15,23C15,23.5523,14.5523,24,14,24L8,24C7.44772,24,7,23.5523,7,23L7,17z M18,16C17.4477,16,17,16.4477,17,17L17,23C17,23.5523,17.4477,24,18,24L24,24C24.5523,24,25,23.5523,25,23L25,17C25,16.4477,24.5523,16,24,16L18,16z M20,7C20,6.44772 20.4477,6 21,6 21.5523,6 22,6.44772 22,7L22,9 24,9C24.5523,9 25,9.44772 25,10 25,10.5523 24.5523,11 24,11L22,11 22,13C22,13.5523 21.5523,14 21,14 20.4477,14 20,13.5523 20,13L20,11 18,11C17.4477,11 17,10.5523 17,10 17,9.44772 17.4477,9 18,9L20,9 20,7z</Geometry>
 		<Geometry x:Key="GeometryTraining">F0 M32,32z M0,0z M25.609,12.8886L16.195,9.56709C16.0688,9.52256,15.9312,9.52256,15.8051,9.56709L6.39102,12.8886C6.15695,12.9712 6.00031,13.1923 6,13.4405 5.99969,13.6887 6.15582,13.9101 6.38969,13.9933L15.8038,17.34C15.8672,17.3626 15.9336,17.3739 16,17.3739 16.0664,17.3739 16.1328,17.3626 16.1962,17.34L25.6103,13.9933C25.8442,13.9101 26.0003,13.6887 26,13.4405 25.9997,13.1923 25.843,12.9712 25.609,12.8886z M24.5928,20.1383L24.5928,15.5988 23.4209,16.0154 23.4209,20.1383C23.068,20.3415 22.8301,20.7221 22.8301,21.1587 22.8301,21.5951 23.068,21.9758 23.4209,22.179L23.4209,22.5824C23.4209,22.9059 23.6833,23.1683 24.0069,23.1683 24.3305,23.1683 24.5928,22.9059 24.5928,22.5824L24.5928,22.1791C24.9458,21.9759 25.1836,21.5952 25.1836,21.1587 25.1836,20.7222 24.9458,20.3415 24.5928,20.1383z M15.4112,18.4443C15.6008,18.5116 15.7989,18.5458 16,18.5458 16.2011,18.5458 16.3992,18.5116 16.5888,18.4443L21.8811,16.5628 21.8811,19.1413C21.8811,19.7721 21.223,20.3055 19.9251,20.7268 18.7938,21.094 17.3999,21.2962 16,21.2962 14.6002,21.2962 13.2062,21.094 12.0749,20.7268 10.777,20.3055 10.1189,19.7721 10.1189,19.1413L10.1189,16.5628 15.4112,18.4443z</Geometry>
 		<Geometry x:Key="GeometryArrowLeft">F0 M12,12z M0,0z M5.71457,2.24196C6.03717,2.56456,6.03717,3.08761,5.71457,3.41022L3.82044,5.30435 9.67391,5.30435C10.1301,5.30435 10.5,5.6742 10.5,6.13043 10.5,6.58667 10.1301,6.95652 9.67391,6.95652L3.82044,6.95652 5.71457,8.85065C6.03717,9.17326 6.03717,9.69631 5.71457,10.0189 5.39196,10.3415 4.86891,10.3415 4.5463,10.0189L1.24196,6.71457C0.919348,6.39196,0.919348,5.86891,1.24196,5.5463L4.5463,2.24196C4.86891,1.91935,5.39196,1.91935,5.71457,2.24196z</Geometry>
-		<Style TargetType="Button" x:Key="ActionButton">
-			<Setter Property="Width" Value="104"/>
-			<Setter Property="Height" Value="32"/>
-			<Setter Property="FontFamily" Value="Segoe UI"/>
-			<Setter Property="FontSize" Value="16"/>
-			<Setter Property="FontWeight" Value="SemiBold"/>
-			<Setter Property="HorizontalAlignment" Value="Right"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
-			<Setter Property="BorderThickness" Value="2"/>
-			<Setter Property="BorderBrush" Value="#011627"/>
-		</Style>
-		<Style TargetType="Button" x:Key="PrimaryActionButton" BasedOn="{StaticResource ActionButton}">
-			<Setter Property="Background" Value="#011627"/>
-			<Setter Property="Foreground" Value="#E3E6E7"/>
-		</Style>
-		<Style TargetType="Button" x:Key="SecondaryActionButton" BasedOn="{StaticResource ActionButton}">
-			<Setter Property="Background" Value="#FFFFFF"/>
-			<Setter Property="Foreground" Value="#011627"/>
-		</Style>
 		<Duration x:Key="DurationResizeNavigator">0:0:0.3</Duration>
 		<Storyboard x:Key="StoryboardConstrictNavigator">
 			<DoubleAnimation Storyboard.TargetName="gridNavigation" Storyboard.TargetProperty="Width"
@@ -187,71 +168,7 @@
 					</Rectangle.Style>
 				</Rectangle>
 			</Grid>
-			<Grid>
-				<ListBox Height="300" ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}"
-						 BorderBrush="Transparent">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<TextBlock>
-								<Run Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="16" Foreground="Black"/>
-								<Run FontSize="14" Foreground="#555564"> | </Run>
-								<Run Text="{Binding Path=Category}" FontSize="14" Foreground="#555564"/>
-								<Run FontSize="14" Foreground="#555564"> | </Run>
-								<Run Text="{Binding Path=Meaning}" FontSize="14" Foreground="Black"/>
-							</TextBlock>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-					<ListBox.ItemContainerStyle>
-						<Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-							<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
-						</Style>
-					</ListBox.ItemContainerStyle>
-				</ListBox>
-				<Button Command="{Binding Path=WordAddCommand}" CommandParameter="{Binding ElementName=window}"
-						Style="{StaticResource PrimaryActionButton}" Margin="0 28 48 0">
-					<Button.Resources>
-						<Style TargetType="Border">
-							<Setter Property="CornerRadius" Value="4"/>
-						</Style>
-					</Button.Resources>
-					Add word
-				</Button>
-				<Button Command="{Binding Path=WordDeleteCommand}"
-						Style="{StaticResource SecondaryActionButton}" Margin="0 72 48 0">
-					<Button.Resources>
-						<Style TargetType="Border">
-							<Setter Property="CornerRadius" Value="4"/>
-						</Style>
-					</Button.Resources>
-					Delete word
-				</Button>
-				<Button Command="{Binding Path=WordCopyCommand}"
-						Style="{StaticResource SecondaryActionButton}" Margin="0 28 164 0">
-					<Button.Resources>
-						<Style TargetType="Border">
-							<Setter Property="CornerRadius" Value="4"/>
-						</Style>
-					</Button.Resources>
-					Copy word
-				</Button>
-				<Button Style="{StaticResource SecondaryActionButton}" Margin="0 28 280 0">
-					<Button.Resources>
-						<Style TargetType="Border">
-							<Setter Property="CornerRadius" Value="4"/>
-						</Style>
-					</Button.Resources>
-					Add topic
-				</Button>
-				<Button Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}"
-						Style="{StaticResource SecondaryActionButton}" Margin="0 28 396 0">
-					<Button.Resources>
-						<Style TargetType="Border">
-							<Setter Property="CornerRadius" Value="4"/>
-						</Style>
-					</Button.Resources>
-					Train
-				</Button>
-			</Grid>
+			<local:VocabularyListControl/>
 		</DockPanel>
 		<Button Name="buttonExpand" Width="24" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"
 				BorderBrush="#DFE3EC" BorderThickness="2" Margin="228 6 0 0"
