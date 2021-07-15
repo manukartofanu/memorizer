@@ -20,6 +20,8 @@ namespace Manurizer.Core
 		[JsonProperty(PropertyName = "d")]
 		public ObservableCollection<Definition> Definitions { get; set; } = new ObservableCollection<Definition>();
 
+		public string MeaningCapitalized { get { return Meaning?.ToUpper(); } }
+
 		public Word()
 		{
 		}

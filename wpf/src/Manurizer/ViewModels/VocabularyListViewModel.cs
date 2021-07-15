@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Manurizer.ViewModels
@@ -18,49 +19,53 @@ namespace Manurizer.ViewModels
 		private Word _selectedWord;
 		public ICommand WordAddCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
+		public ICommand WordEditCommand { get; private set; }
 		public ICommand WordDeleteCommand { get; private set; }
 		public ICommand TrainCommand { get; private set; }
+
+		public Func<Window> GetWindow;
 
 		public VocabularyListViewModel()
 		{
 			Words = new ObservableCollection<Word>(WordLoaderSaver.Words);
-			WordAddCommand = new DelegateCommand((t) => { AddWord(t); }, (t) => { return true; });
-			WordCopyCommand = new DelegateCommand((t) => { CopyWord(); }, (t) => { return true; });
-			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(); }, (t) => { return true; });
+			WordAddCommand = new DelegateCommand((t) => { AddWord(); }, (t) => { return true; });
+			WordCopyCommand = new DelegateCommand((t) => { CopyWord(t); }, (t) => { return true; });
+			WordEditCommand = new DelegateCommand((t) => { EditWord(t); }, (t) => { return true; });
+			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(t); }, (t) => { return true; });
 			TrainCommand = new DelegateCommand((t) => { Train(t); }, (t) => { return true; });
 			Communicator.UpdateWords += UpdateWords;
 			Communicator.SaveWords += () => { WordLoaderSaver.Save(Words.ToArray()); } ;
 		}
 
-		private void AddWord(object window)
+		private void AddWord()
 		{
 			var viewModel = new WordViewModel { Word = new Word() };
-			new WordWindow(window, viewModel).ShowDialog();
+			new WordWindow(GetWindow(), viewModel).ShowDialog();
 			Words.Add(viewModel.Word);
 		}
 
-		internal void EditWord(object window)
+		internal void EditWord(object item)
 		{
-			if (SelectedWord != null)
+			if (item is Word word)
 			{
-				var viewModel = new WordViewModel { Word = SelectedWord };
-				new WordWindow(window, viewModel).ShowDialog();
+				var viewModel = new WordViewModel { Word = word };
+				new WordWindow(GetWindow(), viewModel).ShowDialog();
 			}
 		}
 
-		private void CopyWord()
+		private void CopyWord(object item)
 		{
-			if (SelectedWord != null)
+			if (item is Word word)
 			{
-				Words.Add(new Word(SelectedWord));
+				Words.Add(new Word(word));
 			}
 		}
 
-		private void DeleteWord()
+		private void DeleteWord(object item)
 		{
-			if (SelectedWord != null)
+			if (item is Word word)
 			{
-				Words.Remove(SelectedWord);
+				Words.Remove(word);
 			}
 		}
 

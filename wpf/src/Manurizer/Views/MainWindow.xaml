@@ -199,7 +199,7 @@
 				</ControlTemplate>
 			</Button.Template>
 			<Button.Style>
-				<Style TargetType="Button">
+				<Style TargetType="Button" BasedOn="{StaticResource ButtonBaseStyle}">
 					<Setter Property="Visibility" Value="Hidden"/>
 					<Setter Property="Background" Value="#FFFFFF"/>
 					<Style.Triggers>

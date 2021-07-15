@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:ManurizerWpf"
 			 Startup="Application_Startup" ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
-		
+		<Style x:Key="ButtonBaseStyle" TargetType="Button">
+			<Setter Property="Cursor" Value="Hand"/>
+		</Style>
     </Application.Resources>
 </Application>

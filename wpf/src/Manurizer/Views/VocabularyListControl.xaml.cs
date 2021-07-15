@@ -1,4 +1,5 @@
-﻿using Manurizer.ViewModels;
+﻿using Manurizer.Core;
+using Manurizer.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,12 +13,22 @@ namespace Manurizer.Views
 		public VocabularyListControl()
 		{
 			InitializeComponent();
+			((VocabularyListViewModel)DataContext).GetWindow += () => { return Window.GetWindow(this); };
 		}
 
 		private void ListBoxItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
 		{
-			var viewModel = (VocabularyListViewModel)DataContext;
-			viewModel.EditWord(Window.GetWindow(this));
+			if (sender is ListBoxItem listBoxItem)
+			{
+				if (listBoxItem.Content is Word word)
+				{
+					var command = ((VocabularyListViewModel)DataContext).WordEditCommand;
+					if (command.CanExecute(word))
+					{
+						command.Execute(word);
+					}
+				}
+			}
 		}
 	}
 }
