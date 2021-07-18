@@ -65,78 +65,96 @@
 				 BorderThickness="0" Margin="40 164 40 0" Background="#FFFFFF" x:Name="VocabularyListBox">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Border BorderThickness="0 0 0 1" BorderBrush="#EAEEF2">
-						<Grid Height="36">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="150"/>
-								<ColumnDefinition Width="24"/>
-								<ColumnDefinition Width="122"/>
-								<ColumnDefinition Width="24"/>
-								<ColumnDefinition Width="505"/>
-								<ColumnDefinition Width="100"/>
-							</Grid.ColumnDefinitions>
-							<TextBlock Margin="0 8 0 8" VerticalAlignment="Top">
+					<Grid Height="36">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="150"/>
+							<ColumnDefinition Width="24"/>
+							<ColumnDefinition Width="122"/>
+							<ColumnDefinition Width="24"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="100"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Margin="0 8 0 8" VerticalAlignment="Top">
 								<Run Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="13" Foreground="Black"/>
 								<Run FontSize="11" Foreground="#555564"> | </Run>
 								<Run Text="{Binding Path=Category}" FontSize="11" Foreground="#555564"/>
 								<Run FontSize="11" Foreground="#555564"> |</Run>
-							</TextBlock>
-							<TextBlock Grid.Column="2" Text="{Binding Path=MeaningCapitalized}"
-									   VerticalAlignment="Top" Margin="0 10 0 10" FontSize="11" Foreground="Black"/>
-							<StackPanel Grid.Column="5" Margin="6" Orientation="Horizontal">
-								<Button Command="{Binding DataContext.WordEditCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
-										Style="{StaticResource ListActionButton}" Margin="0 0 4 0"
-										Template="{StaticResource ListActionButtonTemplate}">
-									<Image>
-										<Image.Source>
-											<DrawingImage>
-												<DrawingImage.Drawing>
-													<DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
-														<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Geometry="{StaticResource GeometryEdit}"/>
-													</DrawingGroup>
-												</DrawingImage.Drawing>
-											</DrawingImage>
-										</Image.Source>
-									</Image>
-								</Button>
-								<Button Command="{Binding DataContext.WordCopyCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
-										Style="{StaticResource ListActionButton}" Margin="4 0 4 0"
-										Template="{StaticResource ListActionButtonTemplate}">
-									<Image>
-										<Image.Source>
-											<DrawingImage>
-												<DrawingImage.Drawing>
-													<DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
-														<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Geometry="{StaticResource GeometryCopy}"/>
-													</DrawingGroup>
-												</DrawingImage.Drawing>
-											</DrawingImage>
-										</Image.Source>
-									</Image>
-								</Button>
-								<Button Command="{Binding DataContext.WordDeleteCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
-										Style="{StaticResource ListActionButton}" Margin="4 0 0 0"
-										Template="{StaticResource ListActionButtonTemplate}">
-									<Image>
-										<Image.Source>
-											<DrawingImage>
-												<DrawingImage.Drawing>
-													<DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
-														<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Geometry="{StaticResource GeometryDelete}"/>
-													</DrawingGroup>
-												</DrawingImage.Drawing>
-											</DrawingImage>
-										</Image.Source>
-									</Image>
-								</Button>
-							</StackPanel>
-						</Grid>
-					</Border>
+						</TextBlock>
+						<TextBlock Grid.Column="2" Text="{Binding Path=MeaningCapitalized}"
+								   VerticalAlignment="Top" Margin="0 10 0 10" FontSize="11" Foreground="Black"/>
+						<StackPanel Grid.Column="5" Margin="6" Orientation="Horizontal">
+							<Button Command="{Binding DataContext.WordEditCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
+									Style="{StaticResource ListActionButton}" Margin="0 0 4 0"
+									Template="{StaticResource ListActionButtonTemplate}">
+								<Image>
+									<Image.Source>
+										<DrawingImage>
+											<DrawingImage.Drawing>
+												<DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+													<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Geometry="{StaticResource GeometryEdit}"/>
+												</DrawingGroup>
+											</DrawingImage.Drawing>
+										</DrawingImage>
+									</Image.Source>
+								</Image>
+							</Button>
+							<Button Command="{Binding DataContext.WordCopyCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
+									Style="{StaticResource ListActionButton}" Margin="4 0 4 0"
+									Template="{StaticResource ListActionButtonTemplate}">
+								<Image>
+									<Image.Source>
+										<DrawingImage>
+											<DrawingImage.Drawing>
+												<DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+													<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Geometry="{StaticResource GeometryCopy}"/>
+												</DrawingGroup>
+											</DrawingImage.Drawing>
+										</DrawingImage>
+									</Image.Source>
+								</Image>
+							</Button>
+							<Button Command="{Binding DataContext.WordDeleteCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
+									Style="{StaticResource ListActionButton}" Margin="4 0 0 0"
+									Template="{StaticResource ListActionButtonTemplate}">
+								<Image>
+									<Image.Source>
+										<DrawingImage>
+											<DrawingImage.Drawing>
+												<DrawingGroup ClipGeometry="M0,0 V24 H24 V0 H0 Z">
+													<GeometryDrawing Brush="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Geometry="{StaticResource GeometryDelete}"/>
+												</DrawingGroup>
+											</DrawingImage.Drawing>
+										</DrawingImage>
+									</Image.Source>
+								</Image>
+							</Button>
+						</StackPanel>
+						<Border Grid.ColumnSpan="6" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderBrush="#EAEEF2" BorderThickness="0 0 0 1"/>
+					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 			<ListBox.ItemContainerStyle>
 				<Style TargetType="{x:Type ListBoxItem}">
-					<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
+					<Style.Setters>
+						<EventSetter Event="MouseDoubleClick" Handler="ListBoxItem_MouseDoubleClick"/>
+						<Setter Property="Template">
+							<Setter.Value>
+								<ControlTemplate TargetType="ListBoxItem">
+									<Border Background="{TemplateBinding Background}" BorderThickness="0">
+										<ContentPresenter VerticalAlignment="Center"/>
+									</Border>
+								</ControlTemplate>
+							</Setter.Value>
+						</Setter>
+					</Style.Setters>
+					<Style.Triggers>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="#F7F8F9"/>
+						</Trigger>
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="Background" Value="#F2F3F5"/>
+						</Trigger>
+					</Style.Triggers>
 				</Style>
 			</ListBox.ItemContainerStyle>
 		</ListBox>
