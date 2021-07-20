@@ -63,6 +63,11 @@
 		<TextBlock FontSize="36" Margin="40 16 0 0">Vocabulary list</TextBlock>
 		<ListBox ItemsSource="{Binding Path=Words}" SelectedItem="{Binding Path=SelectedWord}"
 				 BorderThickness="0" Margin="40 164 40 0" Background="#FFFFFF" x:Name="VocabularyListBox">
+			<ListBox.Resources>
+				<Style TargetType="ScrollBar">
+					<Setter Property="Template" Value="{StaticResource SmoothScrollBar}"/>
+				</Style>
+			</ListBox.Resources>
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Grid Height="36">
