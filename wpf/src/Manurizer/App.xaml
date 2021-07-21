@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:ManurizerWpf"
 			 Startup="Application_Startup" ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
+		<SolidColorBrush x:Key="AquaBrush">#2EC4B6</SolidColorBrush>
+		<SolidColorBrush x:Key="OrangeBrush">#FF9F1C</SolidColorBrush>
+		<SolidColorBrush x:Key="RedBrush">#E71D36</SolidColorBrush>
+		<SolidColorBrush x:Key="MidnightBrush">#011627</SolidColorBrush>
+		<SolidColorBrush x:Key="Dark500Brush">#555564</SolidColorBrush>
+		<SolidColorBrush x:Key="Grey500Brush">#868F9A</SolidColorBrush>
+		<SolidColorBrush x:Key="Grey300Brush">#DFE3EC</SolidColorBrush>
+		<SolidColorBrush x:Key="Grey100Brush">#F4F5F6</SolidColorBrush>
+		<SolidColorBrush x:Key="BorderBrush">#CDD1D6</SolidColorBrush>
 		<Style x:Key="ButtonBaseStyle" TargetType="Button">
 			<Setter Property="Cursor" Value="Hand"/>
 		</Style>
