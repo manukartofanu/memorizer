@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Manurizer.Views"
+		xmlns:ctrls="clr-namespace:Manurizer.Controls"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d" Width="432" Height="656"
         Title="Manurizer" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
@@ -17,60 +18,32 @@
 			<Setter Property="FontWeight" Value="SemiBold"/>
 			<Setter Property="FontSize" Value="20"/>
 		</Style>
-		<Style x:Key="LabelStyle" TargetType="TextBlock">
-			<Setter Property="Foreground" Value="{StaticResource Dark500Brush}"/>
-			<Setter Property="FontWeight" Value="SemiBold"/>
-			<Setter Property="FontSize" Value="10"/>
-		</Style>
-		<Style x:Key="RoundTextBoxStyle" TargetType="TextBox">
-			<Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="FontSize" Value="11"/>
-			<Setter Property="Height" Value="28"/>
-			<Setter Property="Padding" Value="4 2 4 2"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-			<Setter Property="Foreground" Value="{StaticResource MidnightBrush}"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type TextBox}">
-						<Border x:Name="border" CornerRadius="4" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-							<ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsMouseOver" Value="True">
-								<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Dark500Brush}"/>
-							</Trigger>
-							<Trigger Property="IsKeyboardFocused" Value="True">
-								<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource MidnightBrush}"/>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
 	</Window.Resources>
 	<StackPanel Width="384" Margin="24">
 		<TextBlock Style="{StaticResource HeaderStyle}">Spelling</TextBlock>
 		<StackPanel Margin="0 12 0 0">
-			<TextBlock Margin="0" Style="{StaticResource LabelStyle}">Word</TextBlock>
-			<TextBox Margin="0 8 0 0" Text="{Binding Path=Word.Name}" Style="{StaticResource RoundTextBoxStyle}"/>
+			<ctrls:TextEdit LabelText="Word" Text="{Binding Path=Word.Name}"/>
 			<Grid Margin="0 12 0 0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
-				<StackPanel Margin="0 0 8 0">
-					<TextBlock Margin="0" Style="{StaticResource LabelStyle}">Transcription</TextBlock>
-					<TextBox Margin="0 8 0 0" Text="{Binding Path=Word.Transcription}" Style="{StaticResource RoundTextBoxStyle}"/>
-				</StackPanel>
-				<StackPanel Margin="8 0 0 0" Grid.Column="1">
-					<TextBlock Margin="0" Style="{StaticResource LabelStyle}">Category</TextBlock>
-					<TextBox Margin="0 8 0 0" Text="{Binding Path=Word.Category}" Style="{StaticResource RoundTextBoxStyle}"/>
-				</StackPanel>
+				<ctrls:TextEdit Margin="0 0 8 0" LabelText="Word class" Text="{Binding Path=Word.Category}"/>
+				<ctrls:TextEdit Grid.Column="1" Margin="8 0 0 0" LabelText="Transcription" Text="{Binding Path=Word.Transcription}"/>
 			</Grid>
 		</StackPanel>
-		<TextBlock Margin="0 4 0 0">Meaning</TextBlock>
-		<TextBox Text="{Binding Path=Word.Meaning}"/>
+		<TextBlock Margin="0 24 0 0" Style="{StaticResource HeaderStyle}">Meaning</TextBlock>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<ctrls:TextEdit Margin="0 12 8 0" LabelText="Guide word" Text="{Binding Path=Word.Meaning}" CharacterCasting="Upper"/>
+			<TextBlock Grid.Column="1" Margin="8 0 0 0" TextWrapping="Wrap" Foreground="#747F8D"
+					   FontSize="10" VerticalAlignment="Bottom">
+				Helps you to find the right meaning when a word has more than one meaning
+			</TextBlock>
+		</Grid>
 		<TextBlock Margin="0 4 0 0">Definition</TextBlock>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="256">
 			<ItemsControl Margin="4" ItemsSource="{Binding Path=Word.Definitions}">

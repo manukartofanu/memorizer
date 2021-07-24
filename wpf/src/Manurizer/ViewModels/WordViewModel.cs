@@ -21,6 +21,8 @@ namespace Manurizer.ViewModels
 			Word.Definitions.Add(new Definition());
 		}
 
+		public Word Name { get; set; }
+
 		public Word Word
 		{
 			get { return _word; }
