@@ -95,6 +95,13 @@
     <Compile Include="Controls\TextEdit.xaml.cs">
       <DependentUpon>TextEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\Definition.cs" />
+    <Compile Include="Core\IQuiz.cs" />
+    <Compile Include="Core\Question.cs" />
+    <Compile Include="Core\QuizSequential.cs" />
+    <Compile Include="Core\QuizTimed.cs" />
+    <Compile Include="Core\Transformer.cs" />
+    <Compile Include="Core\Word.cs" />
     <Compile Include="Events\Communicator.cs" />
     <Compile Include="Model\WordLoaderSaver.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -175,12 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Manurizer.Core\Manurizer.Core.csproj">
-      <Project>{c81faeda-9f38-4ce3-bcd2-516294bb8067}</Project>
-      <Name>Manurizer.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\icon_64.png" />
