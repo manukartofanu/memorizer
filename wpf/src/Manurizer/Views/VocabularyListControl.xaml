@@ -23,6 +23,11 @@
 			<Setter Property="VerticalAlignment" Value="Top"/>
 			<Setter Property="BorderThickness" Value="2"/>
 			<Setter Property="BorderBrush" Value="#011627"/>
+			<Style.Resources>
+				<Style TargetType="Border">
+					<Setter Property="CornerRadius" Value="4"/>
+				</Style>
+			</Style.Resources>
 		</Style>
 		<Style TargetType="Button" x:Key="PrimaryActionButton" BasedOn="{StaticResource ActionButton}">
 			<Setter Property="Background" Value="#011627"/>
@@ -164,30 +169,12 @@
 			</ListBox.ItemContainerStyle>
 		</ListBox>
 		<Button Command="{Binding Path=WordAddCommand}"
-				Style="{StaticResource PrimaryActionButton}" Margin="0 28 48 0">
-			<Button.Resources>
-				<Style TargetType="Border">
-					<Setter Property="CornerRadius" Value="4"/>
-				</Style>
-			</Button.Resources>
-			Add word
+				Style="{StaticResource PrimaryActionButton}" Margin="0 28 48 0">Add word
 		</Button>
-		<Button Style="{StaticResource SecondaryActionButton}" Margin="0 28 164 0">
-			<Button.Resources>
-				<Style TargetType="Border">
-					<Setter Property="CornerRadius" Value="4"/>
-				</Style>
-			</Button.Resources>
-			Add topic
+		<Button Style="{StaticResource SecondaryActionButton}" Margin="0 28 164 0">Add topic
 		</Button>
 		<Button Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}"
-				Style="{StaticResource SecondaryActionButton}" Margin="0 28 396 0">
-			<Button.Resources>
-				<Style TargetType="Border">
-					<Setter Property="CornerRadius" Value="4"/>
-				</Style>
-			</Button.Resources>
-			Train
+				Style="{StaticResource SecondaryActionButton}" Margin="0 28 396 0">Train
 		</Button>
 	</Grid>
 </UserControl>
