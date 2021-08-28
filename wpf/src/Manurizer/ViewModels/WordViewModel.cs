@@ -1,14 +1,19 @@
 ﻿using Manurizer.Commands;
 using Manurizer.Core;
-using System;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Manurizer.ViewModels
 {
-	public class WordViewModel : INotifyPropertyChanged
+	public class WordViewModel
 	{
-		private Word _word = new Word();
+		public string Name { get; set; }
+		public string Class { get; set; }
+		public string Transcription { get; set; }
+		public string GuideWord { get; set; }
+		public ObservableCollection<Meaning> MeaningList { get; set; } = new ObservableCollection<Meaning>();
+		private Word _word;
 		public ICommand DefinitionAddCommand { get; private set; }
 
 		public WordViewModel()
@@ -16,33 +21,61 @@ namespace Manurizer.ViewModels
 			DefinitionAddCommand = new DelegateCommand((t) => { AddDefinition(); }, (t) => { return true; });
 		}
 
+		public WordViewModel(Word word)
+			: this()
+		{
+			_word = word;
+			Name = word.Name;
+			Class = word.Category;
+			Transcription = word.Transcription;
+			GuideWord = word.Meaning;
+			MeaningList = new ObservableCollection<Meaning>(word.Definitions.Select(t => new Meaning(t.Text, t.Examples)).ToList());
+		}
+
 		private void AddDefinition()
 		{
-			Word.Definitions.Add(new Definition());
+			if (MeaningList == null)
+			{
+				MeaningList = new ObservableCollection<Meaning>();
+			}
+			MeaningList.Add(new Meaning());
 		}
 
-		public Word Name { get; set; }
-
-		public Word Word
+		public Word GetWord()
 		{
-			get { return _word; }
-			set
+			return new Word
 			{
-				_word = value;
-				RaisePropertyChanged(nameof(Word));
+				Name = Name,
+				Category = Class,
+				Transcription = Transcription,
+				Meaning = GuideWord,
+				Definitions = MeaningList.Select(t => new Definition { Text = t.Text, Examples = t.Example }).ToList()
+			};
+		}
+
+		public void SaveWord()
+		{
+			_word.Name = Name;
+			_word.Category = Class;
+			_word.Transcription = Transcription;
+			_word.Meaning = GuideWord;
+			_word.Definitions = MeaningList.Select(t => new Definition { Text = t.Text, Examples = t.Example }).ToList();
+		}
+
+		public class Meaning
+		{
+			public string Text { get; set; }
+			public string Example { get; set; }
+
+			public Meaning()
+			{
+			}
+
+			public Meaning(string text, string example)
+			{
+				Text = text;
+				Example = example;
 			}
 		}
-
-		#region INotifyPropertyChanged
-
-		[field: NonSerialized]
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		private void RaisePropertyChanged(string propertyName)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-
-		#endregion
 	}
 }

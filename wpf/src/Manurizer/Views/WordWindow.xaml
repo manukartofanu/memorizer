@@ -22,14 +22,14 @@
 	<StackPanel Width="384" Margin="24">
 		<TextBlock Style="{StaticResource HeaderStyle}">Spelling</TextBlock>
 		<StackPanel Margin="0 12 0 0">
-			<ctrls:TextEdit LabelText="Word" Text="{Binding Path=Word.Name}"/>
+			<ctrls:TextEdit LabelText="Word" Text="{Binding Path=Name}"/>
 			<Grid Margin="0 12 0 0">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="*"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
-				<ctrls:TextEdit Margin="0 0 8 0" LabelText="Word class" Text="{Binding Path=Word.Category}"/>
-				<ctrls:TextEdit Grid.Column="1" Margin="8 0 0 0" LabelText="Transcription" Text="{Binding Path=Word.Transcription}"/>
+				<ctrls:TextEdit Margin="0 0 8 0" LabelText="Word class" Text="{Binding Path=Class}"/>
+				<ctrls:TextEdit Grid.Column="1" Margin="8 0 0 0" LabelText="Transcription" Text="{Binding Path=Transcription}"/>
 			</Grid>
 		</StackPanel>
 		<TextBlock Margin="0 24 0 0" Style="{StaticResource HeaderStyle}">Meaning</TextBlock>
@@ -38,7 +38,7 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<ctrls:TextEdit Margin="0 12 8 0" LabelText="Guide word" Text="{Binding Path=Word.Meaning}" CharacterCasting="Upper"/>
+			<ctrls:TextEdit Margin="0 12 8 0" LabelText="Guide word" Text="{Binding Path=GuideWord}" CharacterCasting="Upper"/>
 			<TextBlock Grid.Column="1" Margin="8 0 0 0" TextWrapping="Wrap" Foreground="#747F8D"
 					   FontSize="10" VerticalAlignment="Bottom">
 				Helps you to find the right meaning when a word has more than one meaning
@@ -46,14 +46,14 @@
 		</Grid>
 		<TextBlock Margin="0 4 0 0">Definition</TextBlock>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="256">
-			<ItemsControl Margin="4" ItemsSource="{Binding Path=Word.Definitions}">
+			<ItemsControl Margin="4" ItemsSource="{Binding Path=MeaningList}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Margin="4">
 							<TextBlock Margin="0 4 0 0">Text</TextBlock>
 							<TextBox Height="48" Text="{Binding Path=Text}" TextWrapping="Wrap"/>
 							<TextBlock Margin="0 4 0 0">Examples</TextBlock>
-							<TextBox Height="64" Text="{Binding Path=Examples}" TextWrapping="Wrap" AcceptsReturn="True"/>
+							<TextBox Height="64" Text="{Binding Path=Example}" TextWrapping="Wrap" AcceptsReturn="True"/>
 							<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
 						</StackPanel>
 					</DataTemplate>

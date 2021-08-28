@@ -39,17 +39,18 @@ namespace Manurizer.ViewModels
 
 		private void AddWord()
 		{
-			var viewModel = new WordViewModel { Word = new Word() };
+			var viewModel = new WordViewModel();
 			new WordWindow(GetWindow(), viewModel).ShowDialog();
-			Words.Add(viewModel.Word);
+			Words.Add(viewModel.GetWord());
 		}
 
 		internal void EditWord(object item)
 		{
 			if (item is Word word)
 			{
-				var viewModel = new WordViewModel { Word = word };
+				var viewModel = new WordViewModel(word);
 				new WordWindow(GetWindow(), viewModel).ShowDialog();
+				viewModel.SaveWord();
 			}
 		}
 

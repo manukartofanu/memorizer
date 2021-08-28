@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Manurizer.Core
 {
@@ -18,7 +18,7 @@ namespace Manurizer.Core
 		public string Meaning { get; set; }
 
 		[JsonProperty(PropertyName = "d")]
-		public ObservableCollection<Definition> Definitions { get; set; } = new ObservableCollection<Definition>();
+		public List<Definition> Definitions { get; set; } = new List<Definition>();
 
 		public Word()
 		{
