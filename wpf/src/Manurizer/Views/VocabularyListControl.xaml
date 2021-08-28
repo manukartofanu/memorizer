@@ -13,30 +13,6 @@
 		<Geometry x:Key="GeometryEdit">F1 M24,24z M0,0z M13.7179,8.44201L15.8399,10.563 9.2882,17.1151C8.82475,17.5785,8.25453,17.921,7.62768,18.1123L5.88828,18.6433C5.78263,18.6756 5.67085,18.6161 5.6386,18.5104 5.62698,18.4724 5.62698,18.4317 5.6386,18.3937L6.1696,16.6543C6.36097,16.0274,6.70343,15.4572,7.16688,14.9937L13.7179,8.44201z M17.8426,6.43934C18.4284,7.02513,18.4284,7.97487,17.8426,8.56066L16.7799,9.62201 14.6589,7.50101 15.7213,6.43934C16.3071,5.85355,17.2568,5.85355,17.8426,6.43934z</Geometry>
 		<Geometry x:Key="GeometryCopy">F0 M24,24z M0,0z M8.5,4.25C6.15279,4.25,4.25,6.15279,4.25,8.5L4.25,16.5C4.25,17.3284,4.92157,18,5.75,18L5.75,8.5C5.75,6.98122,6.98122,5.75,8.5,5.75L17,5.75C17,4.92157,16.3284,4.25,15.5,4.25L8.5,4.25z M9,8.5L17,8.5C17.2761,8.5,17.5,8.72386,17.5,9L17.5,18C17.5,18.2761,17.2761,18.5,17,18.5L9,18.5C8.72386,18.5,8.5,18.2761,8.5,18L8.5,9C8.5,8.72386,8.72386,8.5,9,8.5z M7,9C7,7.89543,7.89543,7,9,7L17,7C18.1046,7,19,7.89543,19,9L19,18C19,19.1046,18.1046,20,17,20L9,20C7.89543,20,7,19.1046,7,18L7,9z</Geometry>
 		<Geometry x:Key="GeometryDelete">F1 M24,24z M0,0z M9,20L15,20C16.1835,20,17.1429,19.0574,17.1429,17.8947L17.1429,8.44444 6.85714,8.44444 6.85714,17.8947C6.85714,19.0574,7.81653,20,9,20z M6.21429,7.36842C6.09594,7.36842 6,7.27417 6,7.15789 6,6.54133 6.84308,5.68421 7.71429,5.68421L9.22938,5.68415C10.1936,4.04675 10.5238,4 12,4 13.4762,4 13.7829,4.00677 14.7706,5.68415 14.7706,5.68415 15.4145,5.68421 16.2857,5.68421 17.1569,5.68421 18,6.54133 18,7.15789 18,7.27417 17.9041,7.36842 17.7857,7.36842L6.21429,7.36842z</Geometry>
-		<Style TargetType="Button" x:Key="ActionButton" BasedOn="{StaticResource ButtonBaseStyle}">
-			<Setter Property="Width" Value="104"/>
-			<Setter Property="Height" Value="32"/>
-			<Setter Property="FontFamily" Value="Segoe UI"/>
-			<Setter Property="FontSize" Value="16"/>
-			<Setter Property="FontWeight" Value="SemiBold"/>
-			<Setter Property="HorizontalAlignment" Value="Right"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
-			<Setter Property="BorderThickness" Value="2"/>
-			<Setter Property="BorderBrush" Value="#011627"/>
-			<Style.Resources>
-				<Style TargetType="Border">
-					<Setter Property="CornerRadius" Value="4"/>
-				</Style>
-			</Style.Resources>
-		</Style>
-		<Style TargetType="Button" x:Key="PrimaryActionButton" BasedOn="{StaticResource ActionButton}">
-			<Setter Property="Background" Value="#011627"/>
-			<Setter Property="Foreground" Value="#E3E6E7"/>
-		</Style>
-		<Style TargetType="Button" x:Key="SecondaryActionButton" BasedOn="{StaticResource ActionButton}">
-			<Setter Property="Background" Value="#FFFFFF"/>
-			<Setter Property="Foreground" Value="#011627"/>
-		</Style>
 		<Style TargetType="Button" x:Key="ListActionButton" BasedOn="{StaticResource ButtonBaseStyle}">
 			<Setter Property="Foreground" Value="#747F8D"/>
 			<Setter Property="Background" Value="Transparent"/>

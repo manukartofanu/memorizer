@@ -1,5 +1,6 @@
 ﻿using Manurizer.Commands;
 using Manurizer.Core;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -13,18 +14,24 @@ namespace Manurizer.ViewModels
 		public string Transcription { get; set; }
 		public string GuideWord { get; set; }
 		public ObservableCollection<Meaning> MeaningList { get; set; } = new ObservableCollection<Meaning>();
+		public bool IsEdit { get; set; }
 		private Word _word;
-		public ICommand DefinitionAddCommand { get; private set; }
+		public ICommand AddMeaningCommand { get; private set; }
+		public ICommand SaveWordCommand { get; private set; }
+
+		public event Action SaveClicked;
 
 		public WordViewModel()
 		{
-			DefinitionAddCommand = new DelegateCommand((t) => { AddDefinition(); }, (t) => { return true; });
+			AddMeaningCommand = new DelegateCommand((t) => { AddMeaning(); }, (t) => { return true; });
+			SaveWordCommand = new DelegateCommand((t) => { SaveClicked?.Invoke(); }, (t) => { return true; });
 		}
 
 		public WordViewModel(Word word)
 			: this()
 		{
 			_word = word;
+			IsEdit = true;
 			Name = word.Name;
 			Class = word.Category;
 			Transcription = word.Transcription;
@@ -32,7 +39,7 @@ namespace Manurizer.ViewModels
 			MeaningList = new ObservableCollection<Meaning>(word.Definitions.Select(t => new Meaning(t.Text, t.Examples)).ToList());
 		}
 
-		private void AddDefinition()
+		private void AddMeaning()
 		{
 			if (MeaningList == null)
 			{

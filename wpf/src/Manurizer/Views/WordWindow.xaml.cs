@@ -14,5 +14,10 @@ namespace Manurizer.Views
 			Owner = (Window)window;
 			DataContext = viewModel;
 		}
+
+		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+		{
+			Close();
+		}
 	}
 }

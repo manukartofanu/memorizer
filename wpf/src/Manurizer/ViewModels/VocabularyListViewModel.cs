@@ -40,8 +40,13 @@ namespace Manurizer.ViewModels
 		private void AddWord()
 		{
 			var viewModel = new WordViewModel();
-			new WordWindow(GetWindow(), viewModel).ShowDialog();
-			Words.Add(viewModel.GetWord());
+			var dialog = new WordWindow(GetWindow(), viewModel);
+			viewModel.SaveClicked += () =>
+			{
+				Words.Add(viewModel.GetWord());
+				dialog.Close();
+			};
+			dialog.ShowDialog();
 		}
 
 		internal void EditWord(object item)
@@ -49,8 +54,13 @@ namespace Manurizer.ViewModels
 			if (item is Word word)
 			{
 				var viewModel = new WordViewModel(word);
-				new WordWindow(GetWindow(), viewModel).ShowDialog();
-				viewModel.SaveWord();
+				var dialog = new WordWindow(GetWindow(), viewModel);
+				viewModel.SaveClicked += () =>
+				{
+					viewModel.SaveWord();
+					dialog.Close();
+				};
+				dialog.ShowDialog();
 			}
 		}
 

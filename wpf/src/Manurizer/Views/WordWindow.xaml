@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:ctrls="clr-namespace:Manurizer.Controls"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
-        mc:Ignorable="d" Width="432" Height="656"
+        mc:Ignorable="d" Height="656"
         Title="Manurizer" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 	<Window.DataContext>
 		<viewModels:WordViewModel/>
@@ -45,7 +45,7 @@
 			</TextBlock>
 		</Grid>
 		<TextBlock Margin="0 4 0 0">Definition</TextBlock>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="256">
+		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="232">
 			<ItemsControl Margin="4" ItemsSource="{Binding Path=MeaningList}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate>
@@ -60,6 +60,22 @@
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
 		</ScrollViewer>
-		<Button Margin="0 4 0 0" Command="{Binding Path=DefinitionAddCommand}">Add Definition</Button>
+		<Button Margin="0 4 0 0" Width="200" HorizontalAlignment="Right"
+				Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
+		<DockPanel Margin="0 10 0 0">
+			<Button Style="{StaticResource SecondaryActionButton}" Click="ButtonCancel_Click">Cancel</Button>
+			<Button Command="{Binding Path=SaveWordCommand}">
+				<Button.Style>
+					<Style TargetType="Button" BasedOn="{StaticResource PrimaryActionButton}">
+						<Setter Property="Content" Value="Add word"/>
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Path=IsEdit}" Value="True">
+								<Setter Property="Content" Value="Save word"/>
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Button.Style>
+			</Button>
+		</DockPanel>
 	</StackPanel>
 </Window>
