@@ -25,6 +25,7 @@ namespace Manurizer.ViewModels
 		{
 			AddMeaningCommand = new DelegateCommand((t) => { AddMeaning(); }, (t) => { return true; });
 			SaveWordCommand = new DelegateCommand((t) => { SaveClicked?.Invoke(); }, (t) => { return true; });
+			MeaningList = new ObservableCollection<Meaning>(new Meaning[] { new Meaning() });
 		}
 
 		public WordViewModel(Word word)

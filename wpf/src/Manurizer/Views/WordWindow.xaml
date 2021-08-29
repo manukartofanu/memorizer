@@ -51,62 +51,10 @@
 			</Setter>
 		</Style>
 	</Window.Resources>
-	<StackPanel Width="384" Margin="24">
-		<TextBlock Style="{StaticResource HeaderStyle}">Spelling</TextBlock>
-		<StackPanel Margin="0 12 0 0">
-			<TextBlock Text="Word" Style="{StaticResource LabelStyle}"/>
-			<TextBox Text="{Binding Path=Name}" Style="{StaticResource RoundTextBoxStyle}"/>
-			<Grid Margin="0 12 0 0">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<StackPanel Margin="0 0 8 0">
-					<TextBlock Text="Word class" Style="{StaticResource LabelStyle}"/>
-					<TextBox Text="{Binding Path=Class}" Style="{StaticResource RoundTextBoxStyle}"/>
-				</StackPanel>
-				<StackPanel Grid.Column="1" Margin="8 0 0 0">
-					<TextBlock Text="Transcription" Style="{StaticResource LabelStyle}"/>
-					<TextBox Text="{Binding Path=Transcription}" Style="{StaticResource RoundTextBoxStyle}"/>
-				</StackPanel>
-			</Grid>
-		</StackPanel>
-		<TextBlock Margin="0 24 0 0" Style="{StaticResource HeaderStyle}">Meaning</TextBlock>
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="*"/>
-				<ColumnDefinition Width="*"/>
-			</Grid.ColumnDefinitions>
-			<StackPanel Margin="0 12 8 0">
-				<TextBlock Text="Guide word" Style="{StaticResource LabelStyle}"/>
-				<TextBox Text="{Binding Path=GuideWord}" Style="{StaticResource RoundTextBoxStyle}" CharacterCasing="Upper"/>
-			</StackPanel>
-			<TextBlock Grid.Column="1" Margin="8 0 0 0" TextWrapping="Wrap" Foreground="#747F8D"
-					   FontSize="10" VerticalAlignment="Bottom">
-				Helps you to find the right meaning when a word has more than one meaning
-			</TextBlock>
-		</Grid>
-		<TextBlock Margin="0 4 0 0">Definition</TextBlock>
-		<ScrollViewer VerticalScrollBarVisibility="Auto" Height="232">
-			<ItemsControl Margin="4" ItemsSource="{Binding Path=MeaningList}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<StackPanel Margin="4">
-							<TextBlock Margin="0 4 0 0">Text</TextBlock>
-							<TextBox Height="48" Text="{Binding Path=Text}" TextWrapping="Wrap"/>
-							<TextBlock Margin="0 4 0 0">Examples</TextBlock>
-							<TextBox Height="64" Text="{Binding Path=Example}" TextWrapping="Wrap" AcceptsReturn="True"/>
-							<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
-						</StackPanel>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</ScrollViewer>
-		<Button Margin="0 4 0 0" Width="200" HorizontalAlignment="Right"
-				Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
-		<DockPanel Margin="0 10 0 0">
-			<Button Style="{StaticResource SecondaryActionButton}" Click="ButtonCancel_Click">Cancel</Button>
-			<Button Command="{Binding Path=SaveWordCommand}">
+	<DockPanel Width="384" Margin="24">
+		<DockPanel DockPanel.Dock="Bottom" Margin="0 10 0 0">
+			<Button DockPanel.Dock="Left" Style="{StaticResource SecondaryActionButton}" Click="ButtonCancel_Click">Cancel</Button>
+			<Button DockPanel.Dock="Right" Command="{Binding Path=SaveWordCommand}">
 				<Button.Style>
 					<Style TargetType="Button" BasedOn="{StaticResource PrimaryActionButton}">
 						<Setter Property="Content" Value="Add word"/>
@@ -119,5 +67,62 @@
 				</Button.Style>
 			</Button>
 		</DockPanel>
-	</StackPanel>
+		<StackPanel>
+			<TextBlock Style="{StaticResource HeaderStyle}">Spelling</TextBlock>
+			<StackPanel Margin="0 12 0 0">
+				<TextBlock Text="Word" Style="{StaticResource LabelStyle}"/>
+				<TextBox Text="{Binding Path=Name}" Style="{StaticResource RoundTextBoxStyle}"/>
+				<Grid Margin="0 12 0 0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<StackPanel Margin="0 0 8 0">
+						<TextBlock Text="Word class" Style="{StaticResource LabelStyle}"/>
+						<TextBox Text="{Binding Path=Class}" Style="{StaticResource RoundTextBoxStyle}"/>
+					</StackPanel>
+					<StackPanel Grid.Column="1" Margin="8 0 0 0">
+						<TextBlock Text="Transcription" Style="{StaticResource LabelStyle}"/>
+						<TextBox Text="{Binding Path=Transcription}" Style="{StaticResource RoundTextBoxStyle}"/>
+					</StackPanel>
+				</Grid>
+			</StackPanel>
+			<TextBlock Margin="0 24 0 0" Style="{StaticResource HeaderStyle}">Meaning</TextBlock>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<StackPanel Margin="0 12 8 0">
+					<TextBlock Style="{StaticResource LabelStyle}">
+						Guide word <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span>
+					</TextBlock>
+					<TextBox Text="{Binding Path=GuideWord}" Style="{StaticResource RoundTextBoxStyle}" CharacterCasing="Upper"/>
+				</StackPanel>
+				<TextBlock Grid.Column="1" Margin="8 0 0 0" TextWrapping="Wrap" Foreground="#747F8D"
+					   FontSize="10" VerticalAlignment="Bottom">
+				Helps you to find the right meaning when a word has more than one meaning</TextBlock>
+			</Grid>
+			<ScrollViewer Margin="0 12 0 0" VerticalScrollBarVisibility="Auto" Height="212">
+				<ItemsControl ItemsSource="{Binding Path=MeaningList}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel>
+								<TextBlock Text="Meaning" Style="{StaticResource LabelStyle}"/>
+								<TextBox Text="{Binding Path=Text}" Style="{StaticResource RoundTextBoxStyle}"
+									 Height="56" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
+								<TextBlock Margin="0 12 0 0" Style="{StaticResource LabelStyle}">
+								Example(s) <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span></TextBlock>
+								<TextBox Text="{Binding Path=Text}" Style="{StaticResource RoundTextBoxStyle}"
+									 Height="96" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
+								<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+			<Button Margin="0 4 0 0" Width="200" HorizontalAlignment="Right"
+				Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
+		</StackPanel>
+	</DockPanel>
 </Window>
