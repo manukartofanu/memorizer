@@ -145,12 +145,12 @@
 			</ListBox.ItemContainerStyle>
 		</ListBox>
 		<Button Command="{Binding Path=WordAddCommand}"
-				Style="{StaticResource PrimaryActionButton}" Margin="0 28 48 0">Add word
+				Style="{StaticResource PrimaryActionButtonStyle}" Margin="0 28 48 0">Add word
 		</Button>
-		<Button Style="{StaticResource SecondaryActionButton}" Margin="0 28 164 0">Add topic
+		<Button Style="{StaticResource SecondaryActionButtonStyle}" Margin="0 28 164 0">Add topic
 		</Button>
 		<Button Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}"
-				Style="{StaticResource SecondaryActionButton}" Margin="0 28 396 0">Train
+				Style="{StaticResource SecondaryActionButtonStyle}" Margin="0 28 396 0">Train
 		</Button>
 	</Grid>
 </UserControl>
