@@ -6,7 +6,7 @@
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
-        mc:Ignorable="d" Height="656"
+        mc:Ignorable="d"
         Title="Manurizer" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 	<Window.DataContext>
 		<viewModels:WordViewModel/>
@@ -50,8 +50,34 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+		<ControlTemplate x:Key="LinkButtonTemplate" TargetType="{x:Type Button}">
+			<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+				<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+			</Border>
+			<ControlTemplate.Triggers>
+				<Trigger Property="IsDefaulted" Value="True">
+					<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+				</Trigger>
+			</ControlTemplate.Triggers>
+		</ControlTemplate>
+		<Style TargetType="Button" x:Key="LinkButtonStyle" BasedOn="{StaticResource ButtonBaseStyle}">
+			<Setter Property="Foreground" Value="{StaticResource MidnightBrush}"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Height" Value="24"/>
+			<Setter Property="Width" Value="132"/>
+			<Setter Property="Cursor" Value="Arrow"/>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="#F2F3F5"/>
+				</Trigger>
+				<Trigger Property="IsPressed" Value="True">
+					<Setter Property="Background" Value="#F2F3F5"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 	</Window.Resources>
-	<DockPanel Width="384" Margin="24">
+	<DockPanel Width="384" Height="608" Margin="24">
 		<DockPanel DockPanel.Dock="Bottom" Margin="0 10 0 0">
 			<Button DockPanel.Dock="Left" Style="{StaticResource SecondaryActionButtonStyle}" Click="ButtonCancel_Click">Cancel</Button>
 			<Button DockPanel.Dock="Right" Command="{Binding Path=SaveWordCommand}">
@@ -100,7 +126,7 @@
 					<TextBox Text="{Binding Path=GuideWord}" Style="{StaticResource RoundTextBoxStyle}" CharacterCasing="Upper"/>
 				</StackPanel>
 				<TextBlock Grid.Column="1" Margin="8 0 0 0" TextWrapping="Wrap" Foreground="#747F8D"
-					   FontSize="10" VerticalAlignment="Bottom">
+						   FontSize="10" VerticalAlignment="Bottom">
 				Helps you to find the right meaning when a word has more than one meaning</TextBlock>
 			</Grid>
 			<ScrollViewer Margin="0 12 0 0" VerticalScrollBarVisibility="Auto" Height="212">
@@ -121,8 +147,9 @@
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
 			</ScrollViewer>
-			<Button Margin="0 4 0 0" Width="200" HorizontalAlignment="Right"
-				Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
+			<Button Margin="0 4 0 0" HorizontalAlignment="Right"
+					Style="{StaticResource LinkButtonStyle}" Template="{StaticResource LinkButtonTemplate}"
+					Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
 		</StackPanel>
 	</DockPanel>
 </Window>
