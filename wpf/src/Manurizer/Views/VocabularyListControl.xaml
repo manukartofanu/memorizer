@@ -64,8 +64,7 @@
 								<Run Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="13" Foreground="Black"/>
 								<Run FontSize="11" Foreground="#555564"> | </Run>
 								<Run Text="{Binding Path=Category}" FontSize="11" Foreground="#555564"/>
-								<Run FontSize="11" Foreground="#555564"> |</Run>
-						</TextBlock>
+								<Run FontSize="11" Foreground="#555564"> |</Run></TextBlock>
 						<TextBlock Grid.Column="2" Text="{Binding Path=MeaningCapitalized}"
 								   VerticalAlignment="Top" Margin="0 10 0 10" FontSize="11" Foreground="Black"/>
 						<StackPanel Grid.Column="5" Margin="6" Orientation="Horizontal">
@@ -144,13 +143,12 @@
 				</Style>
 			</ListBox.ItemContainerStyle>
 		</ListBox>
-		<Button Command="{Binding Path=WordAddCommand}"
-				Style="{StaticResource PrimaryActionButtonStyle}" Margin="0 28 48 0">Add word
-		</Button>
-		<Button Style="{StaticResource SecondaryActionButtonStyle}" Margin="0 28 164 0">Add topic
-		</Button>
+		<Button Command="{Binding Path=WordAddCommand}" Template="{DynamicResource ActionButtonTemplate}"
+				Style="{StaticResource PrimaryActionButtonStyle}" Margin="0 28 48 0">Add word</Button>
+		<Button Style="{StaticResource SecondaryActionButtonStyle}" Margin="0 28 164 0"
+				Template="{DynamicResource ActionButtonTemplate}">Add topic</Button>
 		<Button Command="{Binding Path=TrainCommand}" CommandParameter="{Binding ElementName=window}"
-				Style="{StaticResource SecondaryActionButtonStyle}" Margin="0 28 396 0">Train
-		</Button>
+				Template="{DynamicResource ActionButtonTemplate}"
+				Style="{StaticResource SecondaryActionButtonStyle}" Margin="0 28 396 0">Train</Button>
 	</Grid>
 </UserControl>
