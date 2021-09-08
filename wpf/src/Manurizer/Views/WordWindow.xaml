@@ -132,7 +132,14 @@
 			</Grid>
 			<Grid Margin="0 12 0 0" Height="257">
 				<TabControl VerticalAlignment="Top" Margin="0 0 0 0"
-							Height="249" ItemsSource="{Binding Path=MeaningList}" BorderThickness="0">
+							Height="249" ItemsSource="{Binding Path=MeaningList}" BorderThickness="0 1 0 0">
+					<TabControl.Resources>
+						<ControlTemplate x:Key="TabItemControlTemplate" TargetType="{x:Type TabItem}">
+							<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding Border.CornerRadius}" Height="{TemplateBinding Height}">
+								<ContentPresenter x:Name="ContentSite" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" ContentStringFormat="{TemplateBinding HeaderStringFormat}" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+							</Border>
+						</ControlTemplate>
+					</TabControl.Resources>
 					<TabControl.ContentTemplate>
 						<DataTemplate>
 							<StackPanel>
@@ -150,6 +157,18 @@
 					<TabControl.ItemContainerStyle>
 						<Style TargetType="TabItem">
 							<Setter Property="Header" Value="Meaning"/>
+							<Setter Property="Background" Value="Transparent"/>
+							<Setter Property="Width" Value="63"/>
+							<Setter Property="Height" Value="21"/>
+							<Setter Property="VerticalContentAlignment" Value="Center"/>
+							<Setter Property="Template" Value="{StaticResource TabItemControlTemplate}"/>
+							<Style.Triggers>
+								<Trigger Property="IsSelected" Value="True">
+									<Setter Property="Margin" Value="0 0 0 -1"/>
+									<Setter Property="BorderThickness" Value="0 0 0 2"/>
+									<Setter Property="BorderBrush" Value="{StaticResource MidnightBrush}"/>
+								</Trigger>
+							</Style.Triggers>
 						</Style>
 					</TabControl.ItemContainerStyle>
 				</TabControl>
