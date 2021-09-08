@@ -17,6 +17,7 @@ namespace Manurizer.ViewModels
 		public bool IsEdit { get; set; }
 		private Word _word;
 		public ICommand AddMeaningCommand { get; private set; }
+		public ICommand DeleteMeaningCommand { get; private set; }
 		public ICommand SaveWordCommand { get; private set; }
 
 		public event Action SaveClicked;
@@ -24,6 +25,7 @@ namespace Manurizer.ViewModels
 		public WordViewModel()
 		{
 			AddMeaningCommand = new DelegateCommand((t) => { AddMeaning(); }, (t) => { return true; });
+			DeleteMeaningCommand = new DelegateCommand((t) => { DeleteMeaning(t); }, (t) => { return true; });
 			SaveWordCommand = new DelegateCommand((t) => { SaveClicked?.Invoke(); }, (t) => { return true; });
 			MeaningList = new ObservableCollection<Meaning>(new Meaning[] { new Meaning() });
 		}
@@ -47,6 +49,14 @@ namespace Manurizer.ViewModels
 				MeaningList = new ObservableCollection<Meaning>();
 			}
 			MeaningList.Add(new Meaning());
+		}
+
+		private void DeleteMeaning(object meaning)
+		{
+			if (MeaningList != null && MeaningList.Count > 1)
+			{
+				MeaningList.Remove(meaning as Meaning);
+			}
 		}
 
 		public Word GetWord()

@@ -68,6 +68,7 @@
 			<Setter Property="Height" Value="24"/>
 			<Setter Property="Width" Value="132"/>
 			<Setter Property="Cursor" Value="Arrow"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="True">
 					<Setter Property="Background" Value="#F2F3F5"/>
@@ -133,7 +134,7 @@
 				Helps you to find the right meaning when a word has more than one meaning</TextBlock>
 			</Grid>
 			<Grid Margin="0 12 0 0" Height="257">
-				<TabControl VerticalAlignment="Top" Margin="0 0 0 0"
+				<TabControl VerticalAlignment="Top" Margin="0 0 0 0" Name="tabControlMeaning"
 							Height="249" ItemsSource="{Binding Path=MeaningList}" BorderThickness="0 1 0 0">
 					<TabControl.Resources>
 						<ControlTemplate x:Key="TabItemControlTemplate" TargetType="{x:Type TabItem}">
@@ -182,9 +183,16 @@
 					</TabControl.ItemContainerStyle>
 				</TabControl>
 			</Grid>
-			<Button Margin="0 4 0 0" HorizontalAlignment="Right"
-					Style="{StaticResource LinkButtonStyle}" Template="{StaticResource LinkButtonTemplate}"
-					Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
+			<Grid Margin="0 4 0 0">
+				<Button HorizontalAlignment="Left" Width="62" Height="24" Foreground="{StaticResource RedBrush}"
+						Style="{StaticResource LinkButtonStyle}" Template="{StaticResource LinkButtonTemplate}"
+						Command="{Binding Path=DeleteMeaningCommand}" CommandParameter="{Binding ElementName=tabControlMeaning, Path=SelectedItem}">
+					Delete
+				</Button>
+				<Button HorizontalAlignment="Right" Height="24" Width="132"
+						Style="{StaticResource LinkButtonStyle}" Template="{StaticResource LinkButtonTemplate}"
+						Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
+			</Grid>
 		</StackPanel>
 	</DockPanel>
 </Window>
