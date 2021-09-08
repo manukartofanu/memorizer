@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Manurizer.Views"
+		xmlns:conv="clr-namespace:Manurizer.Converters"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d"
         Title="Manurizer" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
@@ -76,6 +77,7 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+		<conv:TabToIndexConveter x:Key="TabToIndexConverter"/>
 	</Window.Resources>
 	<DockPanel Width="384" Height="608" Margin="24">
 		<DockPanel DockPanel.Dock="Bottom" Margin="0 10 0 0">
@@ -158,10 +160,17 @@
 						<Style TargetType="TabItem">
 							<Setter Property="Header" Value="Meaning"/>
 							<Setter Property="Background" Value="Transparent"/>
-							<Setter Property="Width" Value="63"/>
+							<Setter Property="Width" Value="77"/>
 							<Setter Property="Height" Value="21"/>
 							<Setter Property="VerticalContentAlignment" Value="Center"/>
 							<Setter Property="Template" Value="{StaticResource TabItemControlTemplate}"/>
+							<Setter Property="HeaderTemplate">
+								<Setter.Value>
+									<DataTemplate>
+										<TextBlock Text="{Binding Converter={StaticResource TabToIndexConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}, StringFormat=Meaning {0}}"/>
+									</DataTemplate>
+								</Setter.Value>
+							</Setter>
 							<Style.Triggers>
 								<Trigger Property="IsSelected" Value="True">
 									<Setter Property="Margin" Value="0 0 0 -1"/>

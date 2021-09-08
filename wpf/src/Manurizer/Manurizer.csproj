@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\TabToIndexConveter.cs" />
     <Compile Include="Core\Definition.cs" />
     <Compile Include="Core\IQuiz.cs" />
     <Compile Include="Core\Question.cs" />
