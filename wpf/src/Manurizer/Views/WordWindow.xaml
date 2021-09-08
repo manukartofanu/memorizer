@@ -123,20 +123,20 @@
 				</Grid.ColumnDefinitions>
 				<StackPanel Margin="0 12 8 0">
 					<TextBlock Style="{StaticResource LabelStyle}">
-						Guide word <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span>
-					</TextBlock>
+						Guide word <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span></TextBlock>
 					<TextBox Text="{Binding Path=GuideWord}" Style="{StaticResource RoundTextBoxStyle}" CharacterCasing="Upper"/>
 				</StackPanel>
 				<TextBlock Grid.Column="1" Margin="8 0 0 0" TextWrapping="Wrap" Foreground="#747F8D"
 						   FontSize="10" VerticalAlignment="Bottom">
 				Helps you to find the right meaning when a word has more than one meaning</TextBlock>
 			</Grid>
-			<ScrollViewer Margin="0 12 0 0" VerticalScrollBarVisibility="Auto" Height="212">
-				<ItemsControl ItemsSource="{Binding Path=MeaningList}">
-					<ItemsControl.ItemTemplate>
+			<Grid Margin="0 12 0 0" Height="257">
+				<TabControl VerticalAlignment="Top" Margin="0 0 0 0"
+							Height="249" ItemsSource="{Binding Path=MeaningList}" BorderThickness="0">
+					<TabControl.ContentTemplate>
 						<DataTemplate>
 							<StackPanel>
-								<TextBlock Text="Meaning" Style="{StaticResource LabelStyle}"/>
+								<TextBlock Margin="0 12 0 0" Text="Meaning" Style="{StaticResource LabelStyle}"/>
 								<TextBox Text="{Binding Path=Text}" Style="{StaticResource RoundTextBoxStyle}"
 									 Height="56" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
 								<TextBlock Margin="0 12 0 0" Style="{StaticResource LabelStyle}">
@@ -146,9 +146,14 @@
 								<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
 							</StackPanel>
 						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</ScrollViewer>
+					</TabControl.ContentTemplate>
+					<TabControl.ItemContainerStyle>
+						<Style TargetType="TabItem">
+							<Setter Property="Header" Value="Meaning"/>
+						</Style>
+					</TabControl.ItemContainerStyle>
+				</TabControl>
+			</Grid>
 			<Button Margin="0 4 0 0" HorizontalAlignment="Right"
 					Style="{StaticResource LinkButtonStyle}" Template="{StaticResource LinkButtonTemplate}"
 					Command="{Binding Path=AddMeaningCommand}">Add another meaning</Button>
