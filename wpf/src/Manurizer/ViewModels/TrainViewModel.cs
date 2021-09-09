@@ -18,7 +18,7 @@ namespace Manurizer.ViewModels
 
 		public TrainViewModel()
 		{
-			SubmitAnswerCommand = new DelegateCommand((t) => { SubmitAnswer(); }, (t) => { return true; });
+			SubmitAnswerCommand = new RelayCommand((t) => { SubmitAnswer(); });
 		}
 
 		public void InitializeQuiz()

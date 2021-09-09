@@ -13,7 +13,7 @@ namespace Manurizer.ViewModels
 
 		public MainViewModel()
 		{
-			NavigatorExpandCommand = new DelegateCommand((t) => { IsNavigatorExpanded = !IsNavigatorExpanded;});
+			NavigatorExpandCommand = new RelayCommand((t) => { IsNavigatorExpanded = !IsNavigatorExpanded;});
 		}
 
 		public bool IsNavigatorExpanded

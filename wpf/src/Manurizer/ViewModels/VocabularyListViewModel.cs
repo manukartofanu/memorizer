@@ -28,11 +28,11 @@ namespace Manurizer.ViewModels
 		public VocabularyListViewModel()
 		{
 			Words = new ObservableCollection<Word>(WordLoaderSaver.Words);
-			WordAddCommand = new DelegateCommand((t) => { AddWord(); }, (t) => { return true; });
-			WordCopyCommand = new DelegateCommand((t) => { CopyWord(t); }, (t) => { return true; });
-			WordEditCommand = new DelegateCommand((t) => { EditWord(t); }, (t) => { return true; });
-			WordDeleteCommand = new DelegateCommand((t) => { DeleteWord(t); }, (t) => { return true; });
-			TrainCommand = new DelegateCommand((t) => { Train(t); }, (t) => { return true; });
+			WordAddCommand = new RelayCommand((t) => { AddWord(); });
+			WordCopyCommand = new RelayCommand((t) => { CopyWord(t); });
+			WordEditCommand = new RelayCommand((t) => { EditWord(t); });
+			WordDeleteCommand = new RelayCommand((t) => { DeleteWord(t); });
+			TrainCommand = new RelayCommand((t) => { Train(t); });
 			Communicator.UpdateWords += UpdateWords;
 			Communicator.SaveWords += () => { WordLoaderSaver.Save(Words.ToArray()); } ;
 		}
