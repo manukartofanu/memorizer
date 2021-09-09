@@ -161,7 +161,7 @@
 						<Style TargetType="TabItem">
 							<Setter Property="Header" Value="Meaning"/>
 							<Setter Property="Background" Value="Transparent"/>
-							<Setter Property="Width" Value="77"/>
+							<Setter Property="Width" Value="80"/>
 							<Setter Property="Height" Value="21"/>
 							<Setter Property="VerticalContentAlignment" Value="Center"/>
 							<Setter Property="Template" Value="{StaticResource TabItemControlTemplate}"/>
