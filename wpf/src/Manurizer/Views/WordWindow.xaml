@@ -77,6 +77,11 @@
 					<Setter Property="Background" Value="#F2F3F5"/>
 				</Trigger>
 			</Style.Triggers>
+			<Style.Resources>
+				<Style TargetType="Border">
+					<Setter Property="CornerRadius" Value="4"/>
+				</Style>
+			</Style.Resources>
 		</Style>
 		<conv:TabToIndexConveter x:Key="TabToIndexConverter"/>
 	</Window.Resources>
