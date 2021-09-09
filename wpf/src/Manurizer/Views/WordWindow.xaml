@@ -138,8 +138,8 @@
 						   FontSize="10" VerticalAlignment="Bottom">
 				Helps you to find the right meaning when a word has more than one meaning</TextBlock>
 			</Grid>
-			<Grid Margin="0 12 0 0" Height="257">
-				<TabControl VerticalAlignment="Top" Margin="0 0 0 0" Name="tabControlMeaning"
+			<Grid Margin="0 12 0 0" Height="257" ClipToBounds="True">
+				<TabControl VerticalAlignment="Top" Name="tabControlMeaning"
 							Height="249" ItemsSource="{Binding Path=MeaningList}" BorderThickness="0 1 0 0">
 					<TabControl.Resources>
 						<ControlTemplate x:Key="TabItemControlTemplate" TargetType="{x:Type TabItem}">
@@ -186,6 +186,16 @@
 							</Style.Triggers>
 						</Style>
 					</TabControl.ItemContainerStyle>
+					<TabControl.Style>
+						<Style TargetType="TabControl">
+							<Setter Property="Margin" Value="0 8 0 0"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Path=MeaningList.Count}" Value="1">
+									<Setter Property="Margin" Value="0 -35 0 0"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</TabControl.Style>
 				</TabControl>
 			</Grid>
 			<Grid Margin="0 4 0 0">
