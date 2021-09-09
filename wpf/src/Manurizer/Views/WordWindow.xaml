@@ -83,7 +83,9 @@
 				</Style>
 			</Style.Resources>
 		</Style>
+		<Duration x:Key="DurationResizeMeaningTabControl">0:0:0.2</Duration>
 		<conv:TabToIndexConveter x:Key="TabToIndexConverter"/>
+		<conv:CountToTabsAreVisibleConverter x:Key="CountToTabsAreVisibleConverter"/>
 	</Window.Resources>
 	<DockPanel Width="384" Height="608" Margin="24">
 		<DockPanel DockPanel.Dock="Bottom" Margin="0 10 0 0">
@@ -188,10 +190,25 @@
 					</TabControl.ItemContainerStyle>
 					<TabControl.Style>
 						<Style TargetType="TabControl">
-							<Setter Property="Margin" Value="0 8 0 0"/>
+							<Setter Property="Margin" Value="0 -35 0 0"/>
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding Path=MeaningList.Count}" Value="1">
-									<Setter Property="Margin" Value="0 -35 0 0"/>
+								<DataTrigger Binding="{Binding Path=MeaningList.Count, Converter={StaticResource CountToTabsAreVisibleConverter}}" Value="True">
+									<DataTrigger.EnterActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ThicknessAnimation Storyboard.TargetProperty="Margin"
+																	From="0 -35 0 0" To="0 8 0 0" Duration="{StaticResource DurationResizeMeaningTabControl}"/>
+											</Storyboard>
+										</BeginStoryboard>
+									</DataTrigger.EnterActions>
+									<DataTrigger.ExitActions>
+										<BeginStoryboard>
+											<Storyboard>
+												<ThicknessAnimation Storyboard.TargetProperty="Margin"
+																	From="0 8 0 0" To="0 -35 0 0" Duration="{StaticResource DurationResizeMeaningTabControl}"/>
+											</Storyboard>
+										</BeginStoryboard>
+									</DataTrigger.ExitActions>
 								</DataTrigger>
 							</Style.Triggers>
 						</Style>
