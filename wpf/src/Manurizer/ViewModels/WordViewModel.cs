@@ -25,7 +25,7 @@ namespace Manurizer.ViewModels
 		public WordViewModel()
 		{
 			AddMeaningCommand = new RelayCommand((t) => { AddMeaning(); });
-			DeleteMeaningCommand = new RelayCommand((t) => { DeleteMeaning(t); });
+			DeleteMeaningCommand = new RelayCommand((t) => { DeleteMeaning(t); }, (t) => { return MeaningList.Count > 1; });
 			SaveWordCommand = new RelayCommand((t) => { SaveClicked?.Invoke(); });
 			MeaningList = new ObservableCollection<Meaning>(new Meaning[] { new Meaning() });
 		}
