@@ -4,104 +4,12 @@
              xmlns:local="clr-namespace:ManurizerWpf"
 			 Startup="Application_Startup" ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
-		<SolidColorBrush x:Key="AquaBrush">#2EC4B6</SolidColorBrush>
-		<SolidColorBrush x:Key="OrangeBrush">#FF9F1C</SolidColorBrush>
-		<SolidColorBrush x:Key="RedBrush">#E71D36</SolidColorBrush>
-		<SolidColorBrush x:Key="MidnightBrush">#011627</SolidColorBrush>
-		<SolidColorBrush x:Key="Dark500Brush">#555564</SolidColorBrush>
-		<SolidColorBrush x:Key="Grey500Brush">#868F9A</SolidColorBrush>
-		<SolidColorBrush x:Key="Grey300Brush">#DFE3EC</SolidColorBrush>
-		<SolidColorBrush x:Key="Grey100Brush">#F4F5F6</SolidColorBrush>
-		<SolidColorBrush x:Key="BorderBrush">#CDD1D6</SolidColorBrush>
-		<Style x:Key="ButtonBaseStyle" TargetType="Button">
-			<Setter Property="Cursor" Value="Hand"/>
-		</Style>
-		<Style TargetType="Button" x:Key="ActionButtonStyle" BasedOn="{StaticResource ButtonBaseStyle}">
-			<Setter Property="Width" Value="104"/>
-			<Setter Property="Height" Value="32"/>
-			<Setter Property="FontFamily" Value="Segoe UI"/>
-			<Setter Property="FontSize" Value="16"/>
-			<Setter Property="FontWeight" Value="SemiBold"/>
-			<Setter Property="HorizontalAlignment" Value="Right"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
-			<Setter Property="BorderThickness" Value="2"/>
-			<Setter Property="BorderBrush" Value="#011627"/>
-			<Style.Resources>
-				<Style TargetType="Border">
-					<Setter Property="CornerRadius" Value="4"/>
-				</Style>
-			</Style.Resources>
-		</Style>
-		<Style TargetType="Button" x:Key="PrimaryActionButtonStyle" BasedOn="{StaticResource ActionButtonStyle}">
-			<Setter Property="Background" Value="#011627"/>
-			<Setter Property="Foreground" Value="#E3E6E7"/>
-			<Setter Property="BorderThickness" Value="0"/>
-			<Style.Triggers>
-				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="Background" Value="#444450"/>
-				</Trigger>
-				<Trigger Property="IsPressed" Value="True">
-					<Setter Property="Background" Value="#444450"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
-		<Style TargetType="Button" x:Key="SecondaryActionButtonStyle" BasedOn="{StaticResource ActionButtonStyle}">
-			<Setter Property="Background" Value="#FFFFFF"/>
-			<Setter Property="Foreground" Value="#011627"/>
-			<Style.Triggers>
-				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="BorderBrush" Value="#444450"/>
-					<Setter Property="Foreground" Value="#444450"/>
-				</Trigger>
-				<Trigger Property="IsPressed" Value="True">
-					<Setter Property="BorderBrush" Value="#444450"/>
-					<Setter Property="Foreground" Value="#444450"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
-		<ControlTemplate x:Key="ActionButtonTemplate" TargetType="{x:Type Button}">
-			<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
-				<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-			</Border>
-			<ControlTemplate.Triggers>
-				<Trigger Property="IsDefaulted" Value="True">
-					<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-				</Trigger>
-			</ControlTemplate.Triggers>
-		</ControlTemplate>
-		<ControlTemplate x:Key="SmoothScrollBar" TargetType="{x:Type ScrollBar}">
-			<Grid SnapsToDevicePixels="True" HorizontalAlignment="Right" Margin="0 0 2 0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="*"/>
-				</Grid.RowDefinitions>
-				<Track x:Name="PART_Track" IsDirectionReversed="True" IsEnabled="{TemplateBinding IsMouseOver}" HorizontalAlignment="Right">
-					<Track.Thumb>
-						<Thumb>
-							<Thumb.Style>
-								<Style TargetType="{x:Type Thumb}">
-									<Setter Property="OverridesDefaultStyle" Value="True"/>
-									<Setter Property="IsTabStop" Value="False"/>
-									<Setter Property="Template">
-										<Setter.Value>
-											<ControlTemplate TargetType="{x:Type Thumb}">
-												<Grid>
-													<Border x:Name="thumb" CornerRadius="2" BorderThickness="0" Background="#7A7A7A" Height="{TemplateBinding Height}" Width="4"/>
-												</Grid>
-												<ControlTemplate.Triggers>
-													<Trigger Property="IsMouseOver" Value="True">
-														<Setter Property="Width" TargetName="thumb" Value="8"/>
-														<Setter Property="CornerRadius" TargetName="thumb" Value="4"/>
-													</Trigger>
-												</ControlTemplate.Triggers>
-											</ControlTemplate>
-										</Setter.Value>
-									</Setter>
-								</Style>
-							</Thumb.Style>
-						</Thumb>
-					</Track.Thumb>
-				</Track>
-			</Grid>
-		</ControlTemplate>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Resources/ButtonResourceDictionary.xaml"/>
+				<ResourceDictionary Source="Resources/FontResourceDictionary.xaml"/>
+				<ResourceDictionary Source="Resources/ScrollBarResourceDictionary.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
     </Application.Resources>
 </Application>
