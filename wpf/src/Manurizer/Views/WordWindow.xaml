@@ -142,7 +142,7 @@
 			</Grid>
 			<Grid Margin="0 12 0 0" Height="257" ClipToBounds="True">
 				<TabControl VerticalAlignment="Top" Name="tabControlMeaning"
-							Height="249" ItemsSource="{Binding Path=MeaningList}" BorderThickness="0 1 0 0">
+							Height="249" ItemsSource="{Binding Path=MeaningList.Items}" BorderThickness="0 1 0 0">
 					<TabControl.Resources>
 						<ControlTemplate x:Key="TabItemControlTemplate" TargetType="{x:Type TabItem}">
 							<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding Border.CornerRadius}" Height="{TemplateBinding Height}">
@@ -164,21 +164,18 @@
 							</StackPanel>
 						</DataTemplate>
 					</TabControl.ContentTemplate>
+					<TabControl.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Index, StringFormat=Meaning {0}}"/>
+						</DataTemplate>
+					</TabControl.ItemTemplate>
 					<TabControl.ItemContainerStyle>
 						<Style TargetType="TabItem">
-							<Setter Property="Header" Value="Meaning"/>
 							<Setter Property="Background" Value="Transparent"/>
 							<Setter Property="Width" Value="80"/>
 							<Setter Property="Height" Value="21"/>
 							<Setter Property="VerticalContentAlignment" Value="Center"/>
 							<Setter Property="Template" Value="{StaticResource TabItemControlTemplate}"/>
-							<Setter Property="HeaderTemplate">
-								<Setter.Value>
-									<DataTemplate>
-										<TextBlock Text="{Binding Converter={StaticResource TabToIndexConverter}, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabItem}}, StringFormat=Meaning {0}}"/>
-									</DataTemplate>
-								</Setter.Value>
-							</Setter>
 							<Style.Triggers>
 								<Trigger Property="IsSelected" Value="True">
 									<Setter Property="Margin" Value="0 0 0 -1"/>
@@ -192,7 +189,7 @@
 						<Style TargetType="TabControl">
 							<Setter Property="Margin" Value="0 -35 0 0"/>
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding Path=MeaningList.Count, Converter={StaticResource CountToTabsAreVisibleConverter}}" Value="True">
+								<DataTrigger Binding="{Binding Path=MeaningList.Items.Count, Converter={StaticResource CountToTabsAreVisibleConverter}}" Value="True">
 									<DataTrigger.EnterActions>
 										<BeginStoryboard>
 											<Storyboard>
