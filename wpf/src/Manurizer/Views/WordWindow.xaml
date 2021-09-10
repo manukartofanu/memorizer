@@ -109,7 +109,30 @@
 			<TextBlock Style="{StaticResource HeaderStyle}">Spelling</TextBlock>
 			<StackPanel Margin="0 12 0 0">
 				<TextBlock Text="Word" Style="{StaticResource LabelStyle}"/>
-				<TextBox Text="{Binding Path=Name}" Style="{StaticResource RoundTextBoxStyle}"/>
+				<TextBox Text="{Binding Path=Name}">
+					<TextBox.Style>
+						<Style TargetType="TextBox" BasedOn="{StaticResource RoundTextBoxStyle}">
+							<Style.Resources>
+								<VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+									<VisualBrush.Visual>
+										<Label Content="New word" Foreground="{StaticResource Grey500Brush}"/>
+									</VisualBrush.Visual>
+								</VisualBrush>
+							</Style.Resources>
+							<Style.Triggers>
+								<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+									<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+								</Trigger>
+								<Trigger Property="Text" Value="{x:Null}">
+									<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+								</Trigger>
+								<Trigger Property="IsKeyboardFocused" Value="True">
+									<Setter Property="Background" Value="White"/>
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</TextBox.Style>
+				</TextBox>
 				<Grid Margin="0 12 0 0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
@@ -117,11 +140,57 @@
 					</Grid.ColumnDefinitions>
 					<StackPanel Margin="0 0 8 0">
 						<TextBlock Text="Word class" Style="{StaticResource LabelStyle}"/>
-						<TextBox Text="{Binding Path=Class}" Style="{StaticResource RoundTextBoxStyle}"/>
+						<TextBox Text="{Binding Path=Class}">
+							<TextBox.Style>
+								<Style TargetType="TextBox" BasedOn="{StaticResource RoundTextBoxStyle}">
+									<Style.Resources>
+										<VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+											<VisualBrush.Visual>
+												<Label Content="e.g. verb" Foreground="{StaticResource Grey500Brush}"/>
+											</VisualBrush.Visual>
+										</VisualBrush>
+									</Style.Resources>
+									<Style.Triggers>
+										<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+											<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+										</Trigger>
+										<Trigger Property="Text" Value="{x:Null}">
+											<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+										</Trigger>
+										<Trigger Property="IsKeyboardFocused" Value="True">
+											<Setter Property="Background" Value="White"/>
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</TextBox.Style>
+						</TextBox>
 					</StackPanel>
 					<StackPanel Grid.Column="1" Margin="8 0 0 0">
 						<TextBlock Text="Transcription" Style="{StaticResource LabelStyle}"/>
-						<TextBox Text="{Binding Path=Transcription}" Style="{StaticResource RoundTextBoxStyle}"/>
+						<TextBox Text="{Binding Path=Transcription}">
+							<TextBox.Style>
+								<Style TargetType="TextBox" BasedOn="{StaticResource RoundTextBoxStyle}">
+									<Style.Resources>
+										<VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+											<VisualBrush.Visual>
+												<Label Content="Transcription" Foreground="{StaticResource Grey500Brush}"/>
+											</VisualBrush.Visual>
+										</VisualBrush>
+									</Style.Resources>
+									<Style.Triggers>
+										<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+											<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+										</Trigger>
+										<Trigger Property="Text" Value="{x:Null}">
+											<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+										</Trigger>
+										<Trigger Property="IsKeyboardFocused" Value="True">
+											<Setter Property="Background" Value="White"/>
+										</Trigger>
+									</Style.Triggers>
+								</Style>
+							</TextBox.Style>
+						</TextBox>
 					</StackPanel>
 				</Grid>
 			</StackPanel>
@@ -154,12 +223,58 @@
 						<DataTemplate>
 							<StackPanel>
 								<TextBlock Margin="0 12 0 0" Text="Meaning" Style="{StaticResource LabelStyle}"/>
-								<TextBox Text="{Binding Path=Text}" Style="{StaticResource RoundTextBoxStyle}"
-										 Height="56" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
+								<TextBox Text="{Binding Path=Text}"
+										 Height="56" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True">
+									<TextBox.Style>
+										<Style TargetType="TextBox" BasedOn="{StaticResource RoundTextBoxStyle}">
+											<Style.Resources>
+												<VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+													<VisualBrush.Visual>
+														<Label Content="Meaning" Foreground="{StaticResource Grey500Brush}"/>
+													</VisualBrush.Visual>
+												</VisualBrush>
+											</Style.Resources>
+											<Style.Triggers>
+												<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+													<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+												</Trigger>
+												<Trigger Property="Text" Value="{x:Null}">
+													<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+												</Trigger>
+												<Trigger Property="IsKeyboardFocused" Value="True">
+													<Setter Property="Background" Value="White"/>
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</TextBox.Style>
+								</TextBox>
 								<TextBlock Margin="0 12 0 0" Style="{StaticResource LabelStyle}">
 									Example(s) <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span></TextBlock>
-								<TextBox Text="{Binding Path=Example}" Style="{StaticResource RoundTextBoxStyle}"
-										 Height="96" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
+								<TextBox Text="{Binding Path=Example}"
+										 Height="96" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True">
+									<TextBox.Style>
+										<Style TargetType="TextBox" BasedOn="{StaticResource RoundTextBoxStyle}">
+											<Style.Resources>
+												<VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+													<VisualBrush.Visual>
+														<Label Content="Example(s)" Foreground="{StaticResource Grey500Brush}"/>
+													</VisualBrush.Visual>
+												</VisualBrush>
+											</Style.Resources>
+											<Style.Triggers>
+												<Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+													<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+												</Trigger>
+												<Trigger Property="Text" Value="{x:Null}">
+													<Setter Property="Background" Value="{StaticResource CueBannerBrush}"/>
+												</Trigger>
+												<Trigger Property="IsKeyboardFocused" Value="True">
+													<Setter Property="Background" Value="White"/>
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</TextBox.Style>
+								</TextBox>
 								<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
 							</StackPanel>
 						</DataTemplate>
