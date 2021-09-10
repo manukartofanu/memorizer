@@ -155,11 +155,11 @@
 							<StackPanel>
 								<TextBlock Margin="0 12 0 0" Text="Meaning" Style="{StaticResource LabelStyle}"/>
 								<TextBox Text="{Binding Path=Text}" Style="{StaticResource RoundTextBoxStyle}"
-									 Height="56" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
+										 Height="56" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
 								<TextBlock Margin="0 12 0 0" Style="{StaticResource LabelStyle}">
-								Example(s) <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span></TextBlock>
-								<TextBox Text="{Binding Path=Text}" Style="{StaticResource RoundTextBoxStyle}"
-									 Height="96" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
+									Example(s) <Span FontWeight="Normal" FontStyle="Italic">(optional)</Span></TextBlock>
+								<TextBox Text="{Binding Path=Example}" Style="{StaticResource RoundTextBoxStyle}"
+										 Height="96" TextWrapping="Wrap" VerticalContentAlignment="Top" AcceptsReturn="True"/>
 								<Rectangle Margin="0 16 0 0" Height="2" Fill="Gray"/>
 							</StackPanel>
 						</DataTemplate>
