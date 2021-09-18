@@ -1,5 +1,5 @@
 ﻿using Manurizer.Commands;
-using Manurizer.Core;
+using Manurizer.Entity;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -38,10 +38,10 @@ namespace Manurizer.ViewModels
 			_word = word;
 			IsEdit = true;
 			Name = word.Name;
-			Class = word.Category;
+			Class = word.Class;
 			Transcription = word.Transcription;
-			GuideWord = word.Meaning;
-			MeaningList = new MeaningCollection(word.Definitions);
+			GuideWord = word.GuideWord;
+			MeaningList = new MeaningCollection(word.MeaningList);
 		}
 
 		private void AddMeaning()
@@ -62,20 +62,20 @@ namespace Manurizer.ViewModels
 			return new Word
 			{
 				Name = Name,
-				Category = Class,
+				Class = Class,
 				Transcription = Transcription,
-				Meaning = GuideWord,
-				Definitions = MeaningList.Items.Select(t => new Definition { Text = t.Text, Examples = t.Example }).ToList()
+				GuideWord = GuideWord,
+				MeaningList = MeaningList.Items.Select(t => new Entity.Meaning { Text = t.Text, Example = t.Example }).ToArray()
 			};
 		}
 
 		public void SaveWord()
 		{
 			_word.Name = Name;
-			_word.Category = Class;
+			_word.Class = Class;
 			_word.Transcription = Transcription;
-			_word.Meaning = GuideWord;
-			_word.Definitions = MeaningList.Items.Select(t => new Definition { Text = t.Text, Examples = t.Example }).ToList();
+			_word.GuideWord = GuideWord;
+			_word.MeaningList = MeaningList.Items.Select(t => new Entity.Meaning { Text = t.Text, Example = t.Example }).ToArray();
 		}
 
 		public class Meaning : INotifyPropertyChanged
@@ -126,9 +126,9 @@ namespace Manurizer.ViewModels
 				Items = new ObservableCollection<Meaning>(new Meaning[] { new Meaning { Index = 1 } });
 			}
 
-			public MeaningCollection(IEnumerable<Definition> definitions)
+			public MeaningCollection(IEnumerable<Entity.Meaning> meanings)
 			{
-				Items = new ObservableCollection<Meaning>(definitions.Select(t => new Meaning(t.Text, t.Examples)));
+				Items = new ObservableCollection<Meaning>(meanings.Select(t => new Meaning(t.Text, t.Example)));
 			}
 
 			public void AddMeaning(Meaning item)

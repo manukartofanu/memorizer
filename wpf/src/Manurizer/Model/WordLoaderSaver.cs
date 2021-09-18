@@ -1,33 +1,36 @@
-﻿using Manurizer.Core;
-using Newtonsoft.Json;
+﻿using Manurizer.Entity;
+using Manurizer.Entity.Database;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace Manurizer.Model
 {
 	public static class WordLoaderSaver
 	{
 		public static readonly string LibraryFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Manurizer");
-		public static readonly string FileName = Path.Combine(LibraryFolder, "save.txt");
+		public static readonly string FileName = Path.Combine(LibraryFolder, "schema.db");
 
 		public static Word[] Words { get; set; }
 
 		static WordLoaderSaver()
 		{
-			if (File.Exists(FileName))
+			if (!File.Exists(FileName))
 			{
-				Words = JsonConvert.DeserializeObject<Word[]>(File.ReadAllText(FileName)).OrderBy(t => t.Category).OrderBy(t => t.Meaning).OrderBy(t => t.Name).ToArray();
+				Directory.CreateDirectory(Path.GetDirectoryName(FileName));
+				File.Copy(@".\schema.db", FileName);
+			}
+			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
+			{
+				Words = repository.GetAllItemsEx();
 			}
 		}
 
-		public static void Save(Word[] words)
+		public static void SaveWord(Word word)
 		{
-			if (!Directory.Exists(LibraryFolder))
+			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
-				Directory.CreateDirectory(LibraryFolder);
+				repository.CreateItem(word);
 			}
-			File.WriteAllText(FileName, JsonConvert.SerializeObject(words));
 		}
 	}
 }

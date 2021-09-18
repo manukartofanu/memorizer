@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
+using Word = Manurizer.Entity.Word;
 
 namespace Manurizer.ViewModels
 {

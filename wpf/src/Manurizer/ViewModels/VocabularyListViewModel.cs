@@ -1,5 +1,5 @@
 ﻿using Manurizer.Commands;
-using Manurizer.Core;
+using Manurizer.Entity;
 using Manurizer.Events;
 using Manurizer.Model;
 using Manurizer.Views;
@@ -34,7 +34,6 @@ namespace Manurizer.ViewModels
 			WordDeleteCommand = new RelayCommand((t) => { DeleteWord(t); });
 			TrainCommand = new RelayCommand((t) => { Train(t); });
 			Communicator.UpdateWords += UpdateWords;
-			Communicator.SaveWords += () => { WordLoaderSaver.Save(Words.ToArray()); } ;
 		}
 
 		private void AddWord()
@@ -43,7 +42,13 @@ namespace Manurizer.ViewModels
 			var dialog = new WordWindow(GetWindow(), viewModel);
 			viewModel.SaveClicked += () =>
 			{
-				Words.Add(viewModel.GetWord());
+				Word word = viewModel.GetWord();
+				foreach (var item in word.MeaningList)
+				{
+					item.DateCreated = DateTime.Now;
+				}
+				Words.Add(word);
+				WordLoaderSaver.SaveWord(word);
 				dialog.Close();
 			};
 			dialog.ShowDialog();
@@ -68,7 +73,20 @@ namespace Manurizer.ViewModels
 		{
 			if (item is Word word)
 			{
-				Words.Add(new Word(word));
+				var viewModel = new WordViewModel { Name = word.Name, Class = word.Class, Transcription = word.Transcription };
+				var dialog = new WordWindow(GetWindow(), viewModel);
+				viewModel.SaveClicked += () =>
+				{
+					Word newWord = viewModel.GetWord();
+					foreach (var meaning in newWord.MeaningList)
+					{
+						meaning.DateCreated = DateTime.Now;
+					}
+					Words.Add(newWord);
+					WordLoaderSaver.SaveWord(newWord);
+					dialog.Close();
+				};
+				dialog.ShowDialog();
 			}
 		}
 
@@ -82,14 +100,14 @@ namespace Manurizer.ViewModels
 
 		private void Train(object window)
 		{
-			var viewModel = new TrainViewModel { Words = Words.Where(t => t.Definitions.Count > 0).ToArray() };
+			var viewModel = new TrainViewModel { Words = Words.Where(t => t.MeaningList.Length > 0).ToArray() };
 			viewModel.InitializeQuiz();
 			new TrainWindow(window, viewModel).ShowDialog();
 		}
 
-		private void UpdateWords(List<Question> questions)
+		private void UpdateWords(List<Core.Question> questions)
 		{
-			Transformer.UpdateWords(Words, questions);
+			Core.Transformer.UpdateWords(Words, questions);
 		}
 
 		public ObservableCollection<Word> Words

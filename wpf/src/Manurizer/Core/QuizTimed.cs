@@ -22,7 +22,7 @@ namespace Manurizer.Core
 			_questions = questions.ToArray();
 			for (int i = 0; i < _questions.Length; ++i)
 			{
-				int expectedCount = (DateTime.Now - (_questions[i].DateCreated ?? DateTime.Now)).Days;
+				int expectedCount = (DateTime.Now - (_questions[i].DateCreated)).Days;
 				if (_questions[i].DateCreated == null)
 				{
 					_questions[i].DateCreated = DateTime.Now;

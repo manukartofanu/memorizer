@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Manurizer" Width="1280" Height="720" Closing="Window_Closing" Closed="Window_Closed" Name="window">
+        Title="Manurizer" Width="1280" Height="720" Closed="Window_Closed" Name="window">
 	<Window.DataContext>
 		<viewModels:MainViewModel/>
 	</Window.DataContext>

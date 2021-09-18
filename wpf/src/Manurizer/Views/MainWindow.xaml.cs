@@ -15,11 +15,6 @@ namespace Manurizer.Views
 			InitializeComponent();
 		}
 
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-		{
-			Communicator.RaiseSaveWords();
-		}
-
 		private void Window_Closed(object sender, EventArgs e)
 		{
 			Application.Current.Shutdown();
