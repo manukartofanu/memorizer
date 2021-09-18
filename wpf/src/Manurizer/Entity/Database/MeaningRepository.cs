@@ -15,7 +15,7 @@ namespace Manurizer.Entity.Database
 		{
 			using (IDbConnection connection = new SQLiteConnection(_connectionString))
 			{
-				connection.Execute("insert into Meaning (Id, WordId, Text, Example, DateCreated) values (@Id, @WordId, @Text, @Example, @DateCreated)", item);
+				connection.Execute("insert into Meaning (WordId, Text, Example, DateCreated) values (@WordId, @Text, @Example, @DateCreated)", item);
 			}
 		}
 	}

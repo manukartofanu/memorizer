@@ -19,7 +19,7 @@ namespace Manurizer.Entity.Database
 			{
 				connection.Open();
 				SQLiteTransaction transaction = connection.BeginTransaction();
-				connection.Execute("insert into Word (Id, Name, Transcription, Class, GuideWord) values (@Id, @Name, @Transcription, @Class, @GuideWord)", item);
+				connection.Execute("insert into Word (Name, Transcription, Class, GuideWord) values (@Name, @Transcription, @Class, @GuideWord)", item);
 				wordId = connection.LastInsertRowId;
 				transaction.Commit();
 				connection.Close();
