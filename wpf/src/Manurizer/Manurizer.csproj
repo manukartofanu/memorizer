@@ -109,6 +109,7 @@
     <Compile Include="Core\QuizTimed.cs" />
     <Compile Include="Core\Transformer.cs" />
     <Compile Include="Core\Word.cs" />
+    <Compile Include="Entity\Database\DatabaseSchemaUpdater.cs" />
     <Compile Include="Entity\Database\DatabaseSourceDefinitor.cs" />
     <Compile Include="Entity\Database\GenericRepository.cs" />
     <Compile Include="Entity\Database\IReadRepository.cs" />

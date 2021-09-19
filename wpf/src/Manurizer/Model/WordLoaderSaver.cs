@@ -19,6 +19,7 @@ namespace Manurizer.Model
 				Directory.CreateDirectory(Path.GetDirectoryName(FileName));
 				File.Copy(@".\schema.db", FileName);
 			}
+			DatabaseSchemaUpdater.Update();
 			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
 				Words = repository.GetAllItemsEx();
