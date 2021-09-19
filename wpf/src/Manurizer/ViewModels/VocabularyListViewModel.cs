@@ -1,5 +1,6 @@
 ﻿using Manurizer.Commands;
 using Manurizer.Entity;
+using Manurizer.Entity.Database;
 using Manurizer.Events;
 using Manurizer.Model;
 using Manurizer.Views;
@@ -47,8 +48,8 @@ namespace Manurizer.ViewModels
 				{
 					item.DateCreated = DateTime.Now;
 				}
-				Words.Add(word);
 				WordLoaderSaver.SaveWord(word);
+				Words = new ObservableCollection<Word>(WordLoaderSaver.Words);
 				dialog.Close();
 			};
 			dialog.ShowDialog();
@@ -94,7 +95,11 @@ namespace Manurizer.ViewModels
 		{
 			if (item is Word word)
 			{
-				Words.Remove(word);
+				using (WordRepository repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
+				{
+					repository.DeleteItem(word.Id);
+					Words = new ObservableCollection<Word>(repository.GetAllItemsEx());
+				}
 			}
 		}
 

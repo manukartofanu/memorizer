@@ -18,5 +18,18 @@ namespace Manurizer.Entity.Database
 				connection.Execute("insert into Meaning (WordId, Text, Example, DateCreated) values (@WordId, @Text, @Example, @DateCreated)", item);
 			}
 		}
+
+		public void DeleteItem(long wordId)
+		{
+			using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+				SQLiteTransaction transaction = connection.BeginTransaction();
+				var parameter = new { WordId = wordId };
+				connection.Execute($"delete from {_tableName} where WordId = @WordId", parameter);
+				transaction.Commit();
+				connection.Close();
+			}
+		}
 	}
 }

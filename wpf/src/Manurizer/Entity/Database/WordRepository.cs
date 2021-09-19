@@ -48,5 +48,22 @@ namespace Manurizer.Entity.Database
 			}
 			return words;
 		}
+
+		public void DeleteItem(long id)
+		{
+			using (MeaningRepository repository = new MeaningRepository(_connectionString))
+			{
+				repository.DeleteItem(id);
+			}
+			using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+			{
+				connection.Open();
+				SQLiteTransaction transaction = connection.BeginTransaction();
+				var parameter = new { Id = id };
+				connection.Execute($"delete from {_tableName} where Id = @Id", parameter);
+				transaction.Commit();
+				connection.Close();
+			}
+		}
 	}
 }

@@ -30,6 +30,7 @@ namespace Manurizer.Model
 			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
 				repository.CreateItem(word);
+				Words = repository.GetAllItemsEx();
 			}
 		}
 	}
