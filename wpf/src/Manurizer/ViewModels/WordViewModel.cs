@@ -28,7 +28,7 @@ namespace Manurizer.ViewModels
 		{
 			AddMeaningCommand = new RelayCommand((t) => { AddMeaning(); });
 			DeleteMeaningCommand = new RelayCommand((t) => { DeleteMeaning(t); }, (t) => { return MeaningList.Items.Count > 1; });
-			SaveWordCommand = new RelayCommand((t) => { SaveClicked?.Invoke(); });
+			SaveWordCommand = new RelayCommand((t) => { SaveClicked?.Invoke(); }, (t) => { return IsValidWord(); });
 			MeaningList = new MeaningCollection();
 		}
 
@@ -76,6 +76,12 @@ namespace Manurizer.ViewModels
 			_word.Transcription = Transcription;
 			_word.GuideWord = GuideWord;
 			_word.MeaningList = MeaningList.Items.Select(t => new Entity.Meaning { Text = t.Text, Example = t.Example }).ToArray();
+		}
+
+		private bool IsValidWord()
+		{
+			return !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Class) && !string.IsNullOrEmpty(Transcription)
+				&& MeaningList.Items.All(t => !string.IsNullOrEmpty(t.Text));
 		}
 
 		public class Meaning : INotifyPropertyChanged
