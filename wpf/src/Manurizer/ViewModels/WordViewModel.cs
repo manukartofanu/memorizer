@@ -137,6 +137,7 @@ namespace Manurizer.ViewModels
 			public MeaningCollection(IEnumerable<Entity.Meaning> meanings)
 			{
 				Items = new ObservableCollection<Meaning>(meanings.Select(t => new Meaning(t.Text, t.Example)));
+				ResetIndexes();
 			}
 
 			public void AddMeaning(Meaning item)
