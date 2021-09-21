@@ -1,4 +1,4 @@
-﻿using Manurizer.Core;
+﻿using Manurizer.Entity;
 using Manurizer.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
