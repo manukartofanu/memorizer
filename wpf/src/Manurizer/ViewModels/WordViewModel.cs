@@ -23,6 +23,7 @@ namespace Manurizer.ViewModels
 		public ICommand SaveWordCommand { get; private set; }
 
 		public event Action SaveClicked;
+		public event Action MeaningAdded;
 
 		public WordViewModel()
 		{
@@ -47,6 +48,7 @@ namespace Manurizer.ViewModels
 		private void AddMeaning()
 		{
 			MeaningList.AddMeaning(new Meaning());
+			MeaningAdded?.Invoke();
 		}
 
 		private void DeleteMeaning(object meaning)

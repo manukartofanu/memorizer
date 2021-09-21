@@ -13,11 +13,17 @@ namespace Manurizer.Views
 			InitializeComponent();
 			Owner = (Window)window;
 			DataContext = viewModel;
+			viewModel.MeaningAdded += SelectLastMeaningTab;
 		}
 
 		private void ButtonCancel_Click(object sender, RoutedEventArgs e)
 		{
 			Close();
+		}
+
+		private void SelectLastMeaningTab()
+		{
+			tabControlMeaning.SelectedIndex = tabControlMeaning.Items.Count - 1;
 		}
 	}
 }
