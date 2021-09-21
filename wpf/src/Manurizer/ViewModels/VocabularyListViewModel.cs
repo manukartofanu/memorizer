@@ -16,8 +16,8 @@ namespace Manurizer.ViewModels
 {
 	public class VocabularyListViewModel : INotifyPropertyChanged
 	{
-		private ObservableCollection<Word> _words = new ObservableCollection<Word>();
-		private Word _selectedWord;
+		private ObservableCollection<WordModel> _words = new ObservableCollection<WordModel>();
+		private WordModel _selectedWord;
 		public ICommand WordAddCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
 		public ICommand WordEditCommand { get; private set; }
@@ -28,7 +28,7 @@ namespace Manurizer.ViewModels
 
 		public VocabularyListViewModel()
 		{
-			Words = new ObservableCollection<Word>(WordLoaderSaver.Words);
+			Words = new ObservableCollection<WordModel>(WordLoaderSaver.Words.Select(t => new WordModel(t)));
 			WordAddCommand = new RelayCommand((t) => { AddWord(); });
 			WordCopyCommand = new RelayCommand((t) => { CopyWord(t); });
 			WordEditCommand = new RelayCommand((t) => { EditWord(t); });
@@ -49,7 +49,7 @@ namespace Manurizer.ViewModels
 					item.DateCreated = DateTime.Now;
 				}
 				WordLoaderSaver.SaveWord(word);
-				Words = new ObservableCollection<Word>(WordLoaderSaver.Words);
+				Words = new ObservableCollection<WordModel>(WordLoaderSaver.Words.Select(t => new WordModel(t)));
 				dialog.Close();
 			};
 			dialog.ShowDialog();
@@ -57,9 +57,9 @@ namespace Manurizer.ViewModels
 
 		internal void EditWord(object item)
 		{
-			if (item is Word word)
+			if (item is WordModel word)
 			{
-				var viewModel = new WordViewModel(word);
+				var viewModel = new WordViewModel(word.Word);
 				var dialog = new WordWindow(GetWindow(), viewModel);
 				viewModel.SaveClicked += () =>
 				{
@@ -72,7 +72,7 @@ namespace Manurizer.ViewModels
 
 		private void CopyWord(object item)
 		{
-			if (item is Word word)
+			if (item is WordModel word)
 			{
 				var viewModel = new WordViewModel { Name = word.Name, Class = word.Class, Transcription = word.Transcription };
 				var dialog = new WordWindow(GetWindow(), viewModel);
@@ -83,8 +83,8 @@ namespace Manurizer.ViewModels
 					{
 						meaning.DateCreated = DateTime.Now;
 					}
-					Words.Add(newWord);
 					WordLoaderSaver.SaveWord(newWord);
+					Words = new ObservableCollection<WordModel>(WordLoaderSaver.Words.Select(t => new WordModel(t)));
 					dialog.Close();
 				};
 				dialog.ShowDialog();
@@ -93,29 +93,29 @@ namespace Manurizer.ViewModels
 
 		private void DeleteWord(object item)
 		{
-			if (item is Word word)
+			if (item is WordModel word)
 			{
 				using (WordRepository repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 				{
-					repository.DeleteItem(word.Id);
-					Words = new ObservableCollection<Word>(repository.GetAllItemsEx());
+					repository.DeleteItem(word.Word.Id);
+					Words = new ObservableCollection<WordModel>(repository.GetAllItemsEx().Select(t => new WordModel(t)));
 				}
 			}
 		}
 
 		private void Train(object window)
 		{
-			var viewModel = new TrainViewModel { Words = Words.Where(t => t.MeaningList.Length > 0).ToArray() };
+			var viewModel = new TrainViewModel { Words = Words.Where(t => t.Word.MeaningList.Length > 0).Select(t => t.Word).ToArray() };
 			viewModel.InitializeQuiz();
 			new TrainWindow(window, viewModel).ShowDialog();
 		}
 
 		private void UpdateWords(List<Core.Question> questions)
 		{
-			Core.Transformer.UpdateWords(Words, questions);
+			Core.Transformer.UpdateWords(Words.Select(t => t.Word).ToArray(), questions);
 		}
 
-		public ObservableCollection<Word> Words
+		public ObservableCollection<WordModel> Words
 		{
 			get { return _words; }
 			set
@@ -125,7 +125,7 @@ namespace Manurizer.ViewModels
 			}
 		}
 
-		public Word SelectedWord
+		public WordModel SelectedWord
 		{
 			get { return _selectedWord; }
 			set

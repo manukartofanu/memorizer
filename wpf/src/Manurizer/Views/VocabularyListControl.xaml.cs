@@ -1,4 +1,4 @@
-﻿using Manurizer.Entity;
+﻿using Manurizer.Model;
 using Manurizer.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +20,7 @@ namespace Manurizer.Views
 		{
 			if (sender is ListBoxItem listBoxItem)
 			{
-				if (listBoxItem.Content is Word word)
+				if (listBoxItem.Content is WordModel word)
 				{
 					var command = ((VocabularyListViewModel)DataContext).WordEditCommand;
 					if (command.CanExecute(word))

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace Manurizer.Entity
 {
 	public class Word : IIdentable

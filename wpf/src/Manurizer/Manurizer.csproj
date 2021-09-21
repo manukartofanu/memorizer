@@ -119,6 +119,7 @@
     <Compile Include="Entity\Word.cs" />
     <Compile Include="Events\Communicator.cs" />
     <Compile Include="Model\WordLoaderSaver.cs" />
+    <Compile Include="Model\WordModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TrainViewModel.cs" />
     <Compile Include="ViewModels\VocabularyListViewModel.cs" />

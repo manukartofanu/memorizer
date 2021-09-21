@@ -58,16 +58,19 @@
 							<ColumnDefinition Width="122"/>
 							<ColumnDefinition Width="24"/>
 							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="24"/>
 							<ColumnDefinition Width="100"/>
 						</Grid.ColumnDefinitions>
 						<TextBlock Margin="0 8 0 8" VerticalAlignment="Top">
-								<Run Text="{Binding Path=Name}" FontWeight="SemiBold" FontSize="13" Foreground="Black"/>
+								<Run Text="{Binding Path=Name, Mode=OneWay}" FontWeight="SemiBold" FontSize="13" Foreground="Black"/>
 								<Run FontSize="11" Foreground="#555564"> | </Run>
-								<Run Text="{Binding Path=Class}" FontSize="11" Foreground="#555564"/>
+								<Run Text="{Binding Path=Class, Mode=OneWay}" FontSize="11" Foreground="#555564"/>
 								<Run FontSize="11" Foreground="#555564"> |</Run></TextBlock>
-						<TextBlock Grid.Column="2" Text="{Binding Path=GuideWord}"
+						<TextBlock Grid.Column="2" Text="{Binding Path=GuideWord, Mode=OneWay}"
 								   VerticalAlignment="Top" Margin="0 10 0 10" FontSize="11" Foreground="Black"/>
-						<StackPanel Grid.Column="5" Margin="6" Orientation="Horizontal">
+						<TextBlock Grid.Column="4" Text="{Binding Path=FirstMeaning, Mode=OneWay}" Width="490"
+								   VerticalAlignment="Top" Margin="0 10 0 10" FontSize="11" Foreground="Black" TextTrimming="WordEllipsis"/>
+						<StackPanel Grid.Column="6" Margin="6" Orientation="Horizontal">
 							<Button Command="{Binding DataContext.WordEditCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" CommandParameter="{Binding}"
 									Style="{StaticResource ListActionButton}" Margin="0 0 4 0"
 									Template="{StaticResource ListActionButtonTemplate}">
@@ -114,7 +117,7 @@
 								</Image>
 							</Button>
 						</StackPanel>
-						<Border Grid.ColumnSpan="6" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderBrush="#EAEEF2" BorderThickness="0 0 0 1"/>
+						<Border Grid.ColumnSpan="7" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" BorderBrush="#EAEEF2" BorderThickness="0 0 0 1"/>
 					</Grid>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
