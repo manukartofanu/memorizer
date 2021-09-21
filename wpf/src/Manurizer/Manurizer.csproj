@@ -102,13 +102,11 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Converters\CountToTabsAreVisibleConverter.cs" />
     <Compile Include="Converters\TabToIndexConveter.cs" />
-    <Compile Include="Core\Definition.cs" />
     <Compile Include="Core\IQuiz.cs" />
     <Compile Include="Core\Question.cs" />
     <Compile Include="Core\QuizSequential.cs" />
     <Compile Include="Core\QuizTimed.cs" />
     <Compile Include="Core\Transformer.cs" />
-    <Compile Include="Core\Word.cs" />
     <Compile Include="Entity\Database\DatabaseSchemaUpdater.cs" />
     <Compile Include="Entity\Database\DatabaseSourceDefinitor.cs" />
     <Compile Include="Entity\Database\GenericRepository.cs" />
