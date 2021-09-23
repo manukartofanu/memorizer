@@ -2,6 +2,7 @@
 using Manurizer.Entity.Database;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Manurizer.Model
 {
@@ -22,7 +23,7 @@ namespace Manurizer.Model
 			DatabaseSchemaUpdater.Update();
 			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
-				Words = repository.GetAllItemsEx();
+				Words = repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Name).ToArray();
 			}
 		}
 
@@ -31,7 +32,7 @@ namespace Manurizer.Model
 			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
 				repository.CreateItem(word);
-				Words = repository.GetAllItemsEx();
+				Words = repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Name).ToArray();
 			}
 		}
 	}

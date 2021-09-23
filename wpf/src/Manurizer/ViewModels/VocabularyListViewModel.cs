@@ -98,7 +98,7 @@ namespace Manurizer.ViewModels
 				using (WordRepository repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 				{
 					repository.DeleteItem(word.Word.Id);
-					Words = new ObservableCollection<WordModel>(repository.GetAllItemsEx().Select(t => new WordModel(t)));
+					Words = new ObservableCollection<WordModel>(repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Name).Select(t => new WordModel(t)));
 				}
 			}
 		}
