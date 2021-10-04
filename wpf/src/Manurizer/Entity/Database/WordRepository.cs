@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Manurizer.Entity.Database
 {
-	public class WordRepository : GenericRepository<Word>, IReadRepository<Word>
+	public class WordRepository : GenericRepository<Word>, IWordRepository
 	{
 		public WordRepository(string connectionString)
 			: base(connectionString, "Word")
@@ -24,7 +24,7 @@ namespace Manurizer.Entity.Database
 				transaction.Commit();
 				connection.Close();
 			}
-			using (MeaningRepository repository = new MeaningRepository(_connectionString))
+			using (IMeaningRepository repository = new MeaningRepository(_connectionString))
 			{
 				foreach (var meaning in item.MeaningList)
 				{
@@ -51,7 +51,7 @@ namespace Manurizer.Entity.Database
 
 		public void DeleteItem(long id)
 		{
-			using (MeaningRepository repository = new MeaningRepository(_connectionString))
+			using (IMeaningRepository repository = new MeaningRepository(_connectionString))
 			{
 				repository.DeleteItem(id);
 			}

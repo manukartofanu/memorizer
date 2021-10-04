@@ -21,7 +21,7 @@ namespace Manurizer.Model
 				File.Copy(@".\schema.db", FileName);
 			}
 			DatabaseSchemaUpdater.Update();
-			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
+			using (IWordRepository repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
 				Words = repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Name).ToArray();
 			}
@@ -29,7 +29,7 @@ namespace Manurizer.Model
 
 		public static void SaveWord(Word word)
 		{
-			using (var repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
+			using (IWordRepository repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
 				repository.CreateItem(word);
 				Words = repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Name).ToArray();

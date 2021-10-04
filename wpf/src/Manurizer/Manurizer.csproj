@@ -110,8 +110,10 @@
     <Compile Include="Entity\Database\DatabaseSchemaUpdater.cs" />
     <Compile Include="Entity\Database\DatabaseSourceDefinitor.cs" />
     <Compile Include="Entity\Database\GenericRepository.cs" />
+    <Compile Include="Entity\Database\IMeaningRepository.cs" />
     <Compile Include="Entity\Database\IReadRepository.cs" />
     <Compile Include="Entity\Database\IRepository.cs" />
+    <Compile Include="Entity\Database\IWordRepository.cs" />
     <Compile Include="Entity\Database\MeaningRepository.cs" />
     <Compile Include="Entity\Database\WordRepository.cs" />
     <Compile Include="Entity\IIdentable.cs" />

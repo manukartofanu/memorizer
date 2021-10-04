@@ -4,7 +4,7 @@ using System.Data.SQLite;
 
 namespace Manurizer.Entity.Database
 {
-	public class MeaningRepository : GenericRepository<Meaning>, IReadRepository<Meaning>
+	public class MeaningRepository : GenericRepository<Meaning>, IMeaningRepository
 	{
 		public MeaningRepository(string connectionString)
 			: base(connectionString, "Meaning")
