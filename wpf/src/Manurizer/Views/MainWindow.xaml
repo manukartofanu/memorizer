@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:ie="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:Manurizer.Views"
 		xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
@@ -33,7 +34,13 @@
 		<DockPanel Background="#FFFFFF">
 			<Grid Name="gridNavigation" DockPanel.Dock="Left" Width="240">
 				<ListView Padding="0 28 0 0" Background="#F2F3F5"
-						  SelectionMode="Single" SelectedIndex="0" BorderThickness="0">
+						  SelectionMode="Single" SelectedIndex="0" BorderThickness="0" Name="listViewNavigation">
+					<ie:Interaction.Triggers>
+						<ie:EventTrigger EventName="SelectionChanged">
+							<ie:InvokeCommandAction Command="{Binding SelectControlCommand}"
+													CommandParameter="{Binding ElementName=listViewNavigation, Path=SelectedIndex}"/>
+						</ie:EventTrigger>
+					</ie:Interaction.Triggers>
 					<ListView.Resources>
 						<Style TargetType="ListViewItem">
 							<Style.Setters>
@@ -168,7 +175,56 @@
 					</Rectangle.Style>
 				</Rectangle>
 			</Grid>
-			<local:VocabularyListControl/>
+			<Grid>
+				<local:VocabularyListControl>
+					<local:VocabularyListControl.Style>
+						<Style TargetType="local:VocabularyListControl">
+							<Setter Property="Visibility" Value="Visible"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ElementName=window, Path=DataContext.IsFirstVisible}" Value="False">
+									<Setter Property="Visibility" Value="Collapsed"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</local:VocabularyListControl.Style>
+				</local:VocabularyListControl>
+				<local:GroupManagerControl>
+					<local:GroupManagerControl.Style>
+						<Style TargetType="local:GroupManagerControl">
+							<Setter Property="Visibility" Value="Visible"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ElementName=window, Path=DataContext.IsSecondVisible}" Value="False">
+									<Setter Property="Visibility" Value="Collapsed"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</local:GroupManagerControl.Style>
+				</local:GroupManagerControl>
+				<local:TrainingControl>
+					<local:TrainingControl.Style>
+						<Style TargetType="local:TrainingControl">
+							<Setter Property="Visibility" Value="Visible"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ElementName=window, Path=DataContext.IsThirdVisible}" Value="False">
+									<Setter Property="Visibility" Value="Collapsed"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</local:TrainingControl.Style>
+				</local:TrainingControl>
+				<local:PreferencesControl>
+					<local:PreferencesControl.Style>
+						<Style TargetType="local:PreferencesControl">
+							<Setter Property="Visibility" Value="Visible"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding ElementName=window, Path=DataContext.IsFourthVisible}" Value="False">
+									<Setter Property="Visibility" Value="Collapsed"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</local:PreferencesControl.Style>
+				</local:PreferencesControl>
+			</Grid>
 		</DockPanel>
 		<Button Name="buttonExpand" Width="24" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"
 				BorderBrush="#DFE3EC" BorderThickness="2" Margin="228 6 0 0"
