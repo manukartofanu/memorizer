@@ -23,7 +23,7 @@ namespace Manurizer.Model
 			DatabaseSchemaUpdater.Update();
 			using (IWordRepository repository = new WordRepository(DatabaseSourceDefinitor.ConnectionString))
 			{
-				Words = repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Name).ToArray();
+				Words = repository.GetAllItemsEx().OrderBy(t => t.GuideWord).OrderBy(t => t.Class).OrderBy(t => t.Name).ToArray();
 			}
 		}
 
