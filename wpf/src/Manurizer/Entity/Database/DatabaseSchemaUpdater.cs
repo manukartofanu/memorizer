@@ -17,6 +17,10 @@ namespace Manurizer.Entity.Database
 			{
 				Update002();
 			}
+			if (version < 3)
+			{
+				Update003();
+			}
 		}
 
 		private static void Update002()
@@ -38,6 +42,19 @@ namespace Manurizer.Entity.Database
 		FROM Meaning_Temp;");
 				connection.Execute("drop table Meaning_Temp");
 				connection.Execute("update	DbInfo set Version = 2");
+			}
+		}
+
+		private static void Update003()
+		{
+			using (IDbConnection connection = new SQLiteConnection(DatabaseSourceDefinitor.ConnectionString))
+			{
+				connection.Execute(
+	@"CREATE TABLE Word_Answer (
+	WordId  INTEGER NOT NULL,
+	Time  REAL NOT NULL,
+	IsCorrect INTEGER NOT NULL); ");
+				connection.Execute("update DbInfo set Version = 3");
 			}
 		}
 	}
