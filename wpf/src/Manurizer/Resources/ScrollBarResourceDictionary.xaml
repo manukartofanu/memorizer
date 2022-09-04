@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Manurizer.Resources">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<ControlTemplate x:Key="SmoothScrollBar" TargetType="{x:Type ScrollBar}">
 		<Grid SnapsToDevicePixels="True" HorizontalAlignment="Right" Margin="0 0 2 0">
 			<Grid.RowDefinitions>
