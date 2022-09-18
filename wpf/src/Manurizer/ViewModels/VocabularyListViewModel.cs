@@ -18,6 +18,7 @@ namespace Manurizer.ViewModels
 	{
 		private ObservableCollection<WordModel> _words = new ObservableCollection<WordModel>();
 		private WordModel _selectedWord;
+		public ICommand LoadInitialDataCommand { get; private set; }
 		public ICommand WordAddCommand { get; private set; }
 		public ICommand WordCopyCommand { get; private set; }
 		public ICommand WordEditCommand { get; private set; }
@@ -28,13 +29,18 @@ namespace Manurizer.ViewModels
 
 		public VocabularyListViewModel()
 		{
-			Words = new ObservableCollection<WordModel>(WordLoaderSaver.Words.Select(t => new WordModel(t)));
+			LoadInitialDataCommand = new RelayCommand((t) => { LoadInitialData(); });
 			WordAddCommand = new RelayCommand((t) => { AddWord(); });
 			WordCopyCommand = new RelayCommand((t) => { CopyWord(t); });
 			WordEditCommand = new RelayCommand((t) => { EditWord(t); });
 			WordDeleteCommand = new RelayCommand((t) => { DeleteWord(t); });
 			TrainCommand = new RelayCommand((t) => { Train(t); });
 			Communicator.UpdateWords += UpdateWords;
+		}
+
+		private void LoadInitialData()
+		{
+			Words = new ObservableCollection<WordModel>(WordLoaderSaver.Words.Select(t => new WordModel(t)));
 		}
 
 		private void AddWord()

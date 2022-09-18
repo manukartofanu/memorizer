@@ -5,7 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Manurizer.Views"
 			 xmlns:viewModels="clr-namespace:Manurizer.ViewModels"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" d:DesignWidth="1040" d:DesignHeight="720">
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Loaded">
+			<i:InvokeCommandAction Command="{Binding LoadInitialDataCommand}"/>
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
 	<UserControl.DataContext>
 		<viewModels:VocabularyListViewModel/>
 	</UserControl.DataContext>
